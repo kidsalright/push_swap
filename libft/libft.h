@@ -6,7 +6,7 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 15:16:15 by yberries          #+#    #+#             */
-/*   Updated: 2020/08/08 07:02:35 by yberries         ###   ########.fr       */
+/*   Updated: 2020/09/21 17:54:36 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdlib.h>
 # include <fcntl.h>
 
-# define BUFF_SIZE 1
+# define BUFF_SIZE 8
 
 typedef struct			s_file
 {
@@ -116,5 +116,7 @@ t_btree					*btree_create_node(void *item);
 void					btree_insert_data(t_btree **root, void *item, \
 												int (*cmpf)(void *, void*));
 int						get_next_line(const int fd, char **line);
+int						ft_nbrlen(int n);
+int                     ft_printf(const char *format, ...);
 
 #endif
