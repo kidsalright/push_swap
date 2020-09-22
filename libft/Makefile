@@ -6,7 +6,7 @@
 #    By: yberries <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/09 17:04:49 by yberries          #+#    #+#              #
-#    Updated: 2020/09/21 18:56:33 by yberries         ###   ########.fr        #
+#    Updated: 2020/09/22 23:38:04 by yberries         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -87,31 +87,33 @@ OBJ = $(SRC:.c=.o)
 PFT = ft_printf/
 PFT_OBJ = $(PFT)/obj/*
 
-C_BLUE = \033[34m
-C_GRN = \033[33m
+S_CLN = \033[K
 C_RED = \033[31m
-C_RES = \033[00m
+C_GRN = \033[32m
+C_CYAN = \033[36m
 
 
 all: $(NAME)
 
 %.o: %.c
-	@printf "\r$(C_BLUE)Compiling libft\n"
+	@printf "\r$(S_CLN)$(C_CYAN)Assembling $< > $@"
 	@gcc $(FLAGS) -c -o $@ $<
 
 $(NAME): $(OBJ)
+	@printf "\r$(S_CLN)$(C_GRN)Libft compiled\n"
 	@make -sC $(PFT)
-	@printf "\r$(C_GRN)Building lib$(C_RES)\n"
+#	@printf "\r$(S_CLN)$(C_GRN)Ft_printf compiled\n"
 	@ar rc $(NAME) $(OBJ) $(PFT_OBJ)
 	@ranlib $(NAME)
+	@printf "\r$(R_CLEAN)$(C_GRN)Libft built\n"
 
 clean:
 	@make -sC $(PFT) clean
-	@printf "\r$(C_RED)Clean libft\n"
+	@printf "$(C_RED)Remove libft *.o\n"
 	@rm -rf $(OBJ)
 
 fclean: clean
-	@printf "\r$(C_RED)Fclean libft\n"
+	@printf "$(C_RED)Remove libft.a\n"
 	@rm -rf $(NAME)
 
 re: fclean all

@@ -6,11 +6,12 @@
 #    By: yberries <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/03 05:28:15 by yberries          #+#    #+#              #
-#    Updated: 2020/09/15 20:07:31 by yberries         ###   ########.fr        #
+#    Updated: 2020/09/22 23:34:43 by yberries         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = push_swap
+NAME1 = push_swap
+NAME2 = checker
 
 LIBFT = $(LIBFT_DIR)/libft.a
 LIBFT_DIR = libft/
@@ -18,11 +19,14 @@ LIBFT_LNK = -L $(LIBFT_DIR) -lft
 
 SRC_DIR = src/
 SRC = $(addprefix $(SRC_DIR), $(SRCS))
-SRCS = push_swap.c
+SRCS1 = push_swap.c
+SRCS2 = checker.c
 
 OBJ_DIR = obj/
-OBJS = $(patsubst %.c, %.o, $(SRCS))
-OBJ = $(addprefix $(OBJ_DIR), $(OBJS))
+OBJS1 = $(patsubst %.c, %.o, $(SRCS1))
+OBJS2 = $(patsubst %.c, %.o, $(SRCS2))
+OBJ1 = $(addprefix $(OBJ_DIR), $(OBJS1))
+OBJ2 = $(addprefix $(OBJ_DIR), $(OBJS2))
 
 HDRS = push_swap.h
 HDR_DIR = include/
@@ -32,28 +36,43 @@ INCLUDES = -I $(HDR_DIR) -I $(LIBFT_DIR)
 
 FLAGS = -Wall -Wextra #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
+S_CLN = \033[K
+C_RED = \033[31m
+C_GRN = \033[32m
+C_CYAN = \033[36m
+
 .PHONY: clean all re fclean
 
-all: $(NAME)
+all: $(LIBFT) $(OBJ_DIR) $(NAME1) $(NAME2)
 
-$(NAME): $(LIBFT) $(OBJ_DIR) $(OBJ)
-	gcc $(FLAGS) -o $(NAME) $(INCLUDES) $(OBJ) $(LIBFT_LNK)
+$(NAME1): $(OBJ1)
+	@gcc $(FLAGS) -o $(NAME1) $(INCLUDES) $(OBJ1) $(LIBFT_LNK)
+	@printf "\r$(S_CLN)$(C_GRN)$(NAME1) compiled\n"
+
+$(NAME2): $(OBJ2)
+	@gcc $(FLAGS) -o $(NAME2) $(INCLUDES) $(OBJ2) $(LIBFT_LNK)
+	@printf "\r$(S_CLN)$(C_GRN)$(NAME2) compiled\n"
 
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
 
 $(LIBFT):
-	make -sC $(LIBFT_DIR)
+	@make -sC $(LIBFT_DIR)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(HDR)
-	gcc $(FLAGS) -c $(INCLUDES) $< -o $@
+	@printf "\r$(S_CLN)$(C_CYAN)Compiling"
+	@gcc $(FLAGS) -c $(INCLUDES) $< -o $@
 
 clean:
-	make -sC $(LIBFT_DIR) clean
-	rm -rf $(OBJ_DIR)
+	@make -sC $(LIBFT_DIR) clean
+	@printf "$(C_RED)Remove push_swap *.o\n"
+	@rm -rf $(OBJ_DIR)
 
 fclean: clean
-	rm -f $(NAME)
-	make -sC $(LIBFT_DIR) fclean
+	@rm -f $(NAME1)
+	@printf "$(C_RED)Remove $(NAME1)\n"
+	@rm -f $(NAME2)
+	@printf "$(C_RED)Remove $(NAME2)\n"
+	@make -sC $(LIBFT_DIR) fclean
 	
 re: fclean all
