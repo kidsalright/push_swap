@@ -79,12 +79,10 @@ t_psl	*args_read(int ac, char **av)
 		while (--ac)
 		{
 				s->num = ps_atoi(av[++i]);
-				if (ac != 1)
-				{
-						s->next = (t_psl *)malloc(sizeof(t_psl));
-						s = s->next;
-				}
+				s->next = (t_psl *)malloc(sizeof(t_psl));
+				s = s->next;
 		}
+		s->num = ps_atoi(av[++i]);
 		s->next = NULL;
 		check_dups(head);
 		return (head);
@@ -105,9 +103,9 @@ void	free_ps(t_psl *s)
 
 		while (s)
 		{
-			tmp = s->next;
-			free(s);
-			s = tmp;
+				tmp = s->next;
+				free(s);
+				s = tmp;
 		}
 }
 
@@ -117,7 +115,7 @@ int		main(int ac, char **av)
 
 		if (ac > 2)
 		{
-				sa = args_read(ac, &av[1]);
+				sa = args_read(ac - 1, &av[1]);
 				output_stack(sa);
 				free_ps(sa);
 		}
