@@ -15,4 +15,15 @@
 
 # include "libft.h"
 
+typedef struct	s_psl
+{
+	int				num;
+	struct s_psl	*next;
+}				t_psl;
+
+typedef struct	s_stack
+{
+	int idk;
+}				t_stack;
+
 #endif
