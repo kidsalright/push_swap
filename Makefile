@@ -6,7 +6,7 @@
 #    By: yberries <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/03 05:28:15 by yberries          #+#    #+#              #
-#    Updated: 2020/09/22 23:34:43 by yberries         ###   ########.fr        #
+#    Updated: 2020/10/06 16:50:15 by yberries         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,9 @@ LIBFT_LNK = -L $(LIBFT_DIR) -lft
 
 SRC_DIR = src/
 SRC = $(addprefix $(SRC_DIR), $(SRCS))
-SRCS1 = push_swap.c
+SRCS1 = push_swap.c \
+		tools.c\
+		swaps.c
 SRCS2 = checker.c
 
 OBJ_DIR = obj/

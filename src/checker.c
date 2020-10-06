@@ -6,7 +6,7 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/22 22:34:10 by yberries          #+#    #+#             */
-/*   Updated: 2020/09/23 00:03:30 by yberries         ###   ########.fr       */
+/*   Updated: 2020/10/06 17:34:09 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,5 @@
 
 int main(int ac, char **av)
 {
-	char	buf[10];
-
-	read(0, buf, 10);
-	if (*buf == av[ac - 1][0])
-			ft_printf("OK");
 	return (0);
 }
