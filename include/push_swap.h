@@ -6,7 +6,7 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 20:01:37 by yberries          #+#    #+#             */
-/*   Updated: 2020/10/06 17:40:00 by yberries         ###   ########.fr       */
+/*   Updated: 2020/10/07 04:23:32 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct	s_psl
 
 typedef struct	s_pslist
 {
+		int		len;
 		t_psl	*start;
 		t_psl	*end;
 }				t_pslist;
@@ -34,6 +35,10 @@ int		ps_atoi(const char *str);
 void	ft_exit();
 void    free_ps(t_psl *s);
 int		is_sorted(int *s, int l);
+void    args_read(t_pslist *sa, int ac, char **av);
+void    start_alg(t_pslist *sa);
+void    pop_front(t_pslist *s);
+void    push_front(t_pslist *s, int i);
 
 
 #endif

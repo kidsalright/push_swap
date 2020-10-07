@@ -1,19 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.c                                          :+:      :+:    :+:   */
+/*   sorting.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/22 22:34:10 by yberries          #+#    #+#             */
-/*   Updated: 2020/10/07 01:23:27 by yberries         ###   ########.fr       */
+/*   Created: 2020/10/07 02:56:09 by yberries          #+#    #+#             */
+/*   Updated: 2020/10/07 04:22:08 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int main(int ac, char **av)
+void	start_sort(t_pslist *sa)
 {
-	
-	return (0);
+	t_pslist sb;
+
+	sb.len = 0;
+	sb.start = (t_psl *)malloc(sizeof(t_psl));
+	sb.start->prev = NULL;
+	sb.start->next = NULL;
+	sb.end = NULL;
+	free(sb.start);
+}
+
+void	start_alg(t_pslist *sa)
+{
+	if (sa->len == 3)
+			start_sort(sa);
+	else
+			start_sort(sa);
 }
