@@ -6,11 +6,36 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 01:59:52 by yberries          #+#    #+#             */
-/*   Updated: 2020/10/07 04:13:54 by yberries         ###   ########.fr       */
+/*   Updated: 2020/10/07 06:59:11 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void    create_stack(t_pslist *s)
+{
+		s->len = 1;
+		s->start = (t_psl *)malloc(sizeof(t_psl));
+		s->start->prev = NULL;
+		s->start->next = NULL;
+		s->end = s->start;
+}
+
+void	push_end(t_pslist *s, int i)
+{
+	t_psl *tmp;
+
+	tmp = (t_psl *)malloc(sizeof(t_psl));
+	tmp->num = i;
+	tmp->next = NULL;
+	tmp->prev = s->end;
+	if (s->end)
+			s->end->next = tmp;
+	s->end = tmp;
+	if (s->start == NULL)
+			s->start = tmp;
+	++s->len;
+}
 
 void    push_front(t_pslist *s, int i)
 {
@@ -30,7 +55,6 @@ void    push_front(t_pslist *s, int i)
 
 void    pop_front(t_pslist *s)
 {
-		t_psl   *tmp;
 		t_psl   *prev;
 
 		prev = s->start;

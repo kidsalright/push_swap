@@ -6,7 +6,7 @@
 #    By: yberries <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/03 05:28:15 by yberries          #+#    #+#              #
-#    Updated: 2020/10/07 02:57:44 by yberries         ###   ########.fr        #
+#    Updated: 2020/10/07 07:24:48 by yberries         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,8 +23,12 @@ SRCS1 = push_swap.c \
 		ps_tools.c\
 		swaps.c\
 		sorting.c\
+		reading.c\
 		lst_tools.c
-SRCS2 = checker.c
+SRCS2 = checker.c\
+		lst_tools.c\
+		reading.c\
+		ps_tools.c
 
 OBJ_DIR = obj/
 OBJS1 = $(patsubst %.c, %.o, $(SRCS1))

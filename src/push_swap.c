@@ -6,7 +6,7 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 20:05:17 by yberries          #+#    #+#             */
-/*   Updated: 2020/10/07 03:51:41 by yberries         ###   ########.fr       */
+/*   Updated: 2020/10/07 07:20:08 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,40 +33,15 @@ void	output_stack(t_psl *s)
 		}
 }
 
-void	args_read(t_pslist *sa, int ac, char **av)
-{
-		t_psl	*head;
-		t_psl	*s;
-		t_psl	*tmp;
-		int		i;
-
-		i = -1;
-		head = (t_psl *)malloc(sizeof(t_psl));
-		head->prev = NULL;
-		sa->start = head;
-		s = head;
-		while (--ac)
-		{
-				tmp = s;
-				s->num = ps_atoi(av[++i]);
-				s->next = (t_psl *)malloc(sizeof(t_psl));
-				s = s->next;
-				s->prev = tmp;
-		}
-		s->num = ps_atoi(av[++i]);
-		sa->end = s;
-		s->next = NULL;
-		check_dups(head);
-}
-
 int		main(int ac, char **av)
 {
 		t_pslist	sa;
 
 		if (ac > 1)
 		{
-				sa.len = ac - 1;
-				args_read(&sa, sa.len, &av[1]);
+				args_to_stack(&sa, ac, &av[1]);
+				pop_front(&sa);
+				check_dups(sa.start);
 				start_alg(&sa);
 				output_stack(sa.start);
 				free_ps(sa.start);
