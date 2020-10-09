@@ -6,7 +6,7 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 20:01:37 by yberries          #+#    #+#             */
-/*   Updated: 2020/10/07 07:28:51 by yberries         ###   ########.fr       */
+/*   Updated: 2020/10/09 01:44:28 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ typedef struct	s_pslist
 		t_psl	*end;
 }				t_pslist;
 
-void	output_stack(t_psl *s);
+void	output_stack(t_pslist *sa, t_pslist *sb);
 void	check_dups(t_psl *head);
-int		ps_atoi(const char *str);
+int		ps_atoi(char **str, char sign);
 void	ft_exit();
 void    free_ps(t_psl *s);
 int		is_sorted(t_psl *s);
