@@ -6,7 +6,7 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/06 16:39:30 by yberries          #+#    #+#             */
-/*   Updated: 2020/10/09 01:38:42 by yberries         ###   ########.fr       */
+/*   Updated: 2020/10/10 23:48:12 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,6 @@ int             is_sorted(t_psl *s)
 				s = s->next;
 		}
 		return (1);
-}
-
-void    ft_exit()
-{
-		write(2, "Error\n", 6);
-		exit(1);
 }
 
 int             ps_atoi(char **str, char sign)
@@ -56,10 +50,7 @@ void    check_dups(t_psl *head)
 				while (j)
 				{
 						if (i->num == j->num)
-						{
-								ft_printf("WOW DUPS %d  and  %d\n", i->num, j->num);
 								ft_exit();
-						}
 						j = j->next;
 				}
 				i = i->next;

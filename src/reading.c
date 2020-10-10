@@ -6,7 +6,7 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 07:03:06 by yberries          #+#    #+#             */
-/*   Updated: 2020/10/09 01:39:51 by yberries         ###   ########.fr       */
+/*   Updated: 2020/10/11 00:04:04 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,6 @@ void    args_to_stack(t_pslist *sa, int ac, char **av)
 
 		i = -1;
 		create_stack(sa);
-		while (--ac)
+		while (ac--)
 				find_nums(sa, av[++i]);
 }
