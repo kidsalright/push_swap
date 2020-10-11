@@ -6,7 +6,7 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/06 16:39:30 by yberries          #+#    #+#             */
-/*   Updated: 2020/10/10 23:48:12 by yberries         ###   ########.fr       */
+/*   Updated: 2020/10/11 03:43:54 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,17 @@ void    check_dups(t_psl *head)
 						j = j->next;
 				}
 				i = i->next;
+		}
+}
+
+void    free_ps(t_psl *s)
+{
+		t_psl   *tmp;
+
+		while (s)
+		{
+				tmp = s->next;
+				free(s);
+				s = tmp;
 		}
 }

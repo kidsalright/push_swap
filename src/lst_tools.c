@@ -6,7 +6,7 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 01:59:52 by yberries          #+#    #+#             */
-/*   Updated: 2020/10/07 06:59:11 by yberries         ###   ########.fr       */
+/*   Updated: 2020/10/11 03:52:04 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,20 @@ void	push_end(t_pslist *s, int i)
 	if (s->start == NULL)
 			s->start = tmp;
 	++s->len;
+}
+
+void	pop_end(t_pslist *s)
+{
+		t_psl	*next;
+
+		next = s->end;
+		s->end = s->end->prev;
+		if (s->end)
+				s->end->next = NULL;
+		if (next == s->start)
+				s->start = NULL;
+		free(next);
+		--s->len;
 }
 
 void    push_front(t_pslist *s, int i)
@@ -67,14 +81,3 @@ void    pop_front(t_pslist *s)
 		--s->len;
 }
 
-void    free_ps(t_psl *s)
-{
-		t_psl   *tmp;
-
-		while (s)
-		{
-				tmp = s->next;
-				free(s);
-				s = tmp;
-		}
-}
