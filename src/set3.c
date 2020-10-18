@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pushes.c                                           :+:      :+:    :+:   */
+/*   set3.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/11 03:22:55 by yberries          #+#    #+#             */
-/*   Updated: 2020/10/11 03:34:16 by yberries         ###   ########.fr       */
+/*   Created: 2020/10/18 09:07:29 by yberries          #+#    #+#             */
+/*   Updated: 2020/10/18 11:10:22 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void    push_a(t_pslist *sa, t_pslist *sb)
+void	rrr(t_state *s)
 {
-		push_end(sb, sa->start->num);
-		pop_front(sa);
+		rra(s);
+		rrb(s);
 }
 
-void    push_b(t_pslist *sb, t_pslist *sa)
+void    ss(t_state *s)
 {
-		push_end(sa, sb->start->num);
-		pop_front(sb);
+		sa(s);
+		sb(s);
 }
 
-void	push_push(t_pslist *sa, t_pslist *sb)
+void    rr(t_state *s)
 {
-		push_a(sa, sb);
-		push_b(sb, sa);
+		ra(s);
+		rb(s);
 }

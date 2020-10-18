@@ -6,7 +6,7 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/06 16:39:30 by yberries          #+#    #+#             */
-/*   Updated: 2020/10/11 03:43:54 by yberries         ###   ########.fr       */
+/*   Updated: 2020/10/18 08:12:44 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,27 @@ void    check_dups(t_psl *head)
 		}
 }
 
-void    free_ps(t_psl *s)
+void    free_ps(t_state *s)
 {
-		t_psl   *tmp;
+		t_psl *tmp1;
+		t_psl *tmp2;
 
-		while (s)
+		if (s->a.start)
+				tmp1 = s->a.start;
+		while (tmp1)
 		{
-				tmp = s->next;
-				free(s);
-				s = tmp;
+				tmp2 = tmp1->next;
+				free(tmp1);
+				tmp1 = tmp2;
+		}
+		if (s->b.start)
+		{
+				tmp1 = s->b.start;
+				while (tmp1)
+				{
+						tmp2 = tmp1->next;
+						free(tmp1);
+						tmp1 = tmp2;
+				}
 		}
 }

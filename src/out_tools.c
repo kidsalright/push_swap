@@ -6,7 +6,7 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/10 23:45:44 by yberries          #+#    #+#             */
-/*   Updated: 2020/10/11 03:53:39 by yberries         ###   ########.fr       */
+/*   Updated: 2020/10/18 11:22:59 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,29 @@ void    ft_exit()
 		exit(1);
 }
 
-void		out_res(t_pslist *sa, t_pslist *sb, char *instr)
+void		out_res(t_state *state)
 {
-		t_psl *ta;
+		t_psl	*tmpa;
+		t_psl	*tmpb;
 
-		ta = sa->start;
 		//	ft_printf("%s\n", instr);
-		ft_printf("  Stack A  |  Stack B\n\n");
-		while (ta)
+		tmpa = (state->a.start) ? state->a.start : NULL;
+		tmpb = (state->b.start) ? state->b.start : NULL;
+		ft_printf("  Stack A  |  Stack B\n");
+		while (tmpa && tmpb)
 		{
-				ft_printf("%s%9d%s\n", CYN, ta->num, RES);
-				ta = ta->next;
+				ft_printf("%s%9d%6d%s\n", CYN, tmpa->num, tmpb->num, RES);
+				tmpa = tmpa->next;
+				tmpb = tmpb->next;
+		}
+		while (tmpa)
+		{
+				ft_printf("%s%9d%s\n", CYN, tmpa->num, RES);
+				tmpa = tmpa->next;
+		}
+		while (tmpb)
+		{
+				ft_printf("%s%15d%s\n", CYN, tmpb->num, RES);
+				tmpb = tmpb->next;
 		}
 }
-

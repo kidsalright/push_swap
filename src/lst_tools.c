@@ -6,22 +6,13 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 01:59:52 by yberries          #+#    #+#             */
-/*   Updated: 2020/10/11 03:52:04 by yberries         ###   ########.fr       */
+/*   Updated: 2020/10/18 09:44:47 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void    create_stack(t_pslist *s)
-{
-		s->len = 1;
-		s->start = (t_psl *)malloc(sizeof(t_psl));
-		s->start->prev = NULL;
-		s->start->next = NULL;
-		s->end = s->start;
-}
-
-void	push_end(t_pslist *s, int i)
+void	push_end(t_stack *s, int i)
 {
 	t_psl *tmp;
 
@@ -37,7 +28,7 @@ void	push_end(t_pslist *s, int i)
 	++s->len;
 }
 
-void	pop_end(t_pslist *s)
+void	pop_end(t_stack *s)
 {
 		t_psl	*next;
 
@@ -51,7 +42,7 @@ void	pop_end(t_pslist *s)
 		--s->len;
 }
 
-void    push_front(t_pslist *s, int i)
+void    push_front(t_stack *s, int i)
 {
 		t_psl *tmp;
 
@@ -67,7 +58,7 @@ void    push_front(t_pslist *s, int i)
 		++s->len;
 }
 
-void    pop_front(t_pslist *s)
+void    pop_front(t_stack *s)
 {
 		t_psl   *prev;
 

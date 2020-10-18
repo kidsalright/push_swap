@@ -1,25 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rots.c                                             :+:      :+:    :+:   */
+/*   set2.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/11 03:22:02 by yberries          #+#    #+#             */
-/*   Updated: 2020/10/11 03:33:33 by yberries         ###   ########.fr       */
+/*   Created: 2020/10/18 09:07:29 by yberries          #+#    #+#             */
+/*   Updated: 2020/10/18 11:10:45 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void    rotate_stack(t_pslist *s)
+void	ra(t_state *s)
 {
-		push_end(s, s->start->num);
-		pop_front(s);
+		if (s->a.start)
+		{
+				push_end(&s->a, s->a.start->num);
+				pop_front(&s->a);
+		}
 }
 
-void	rot_rot(t_pslist *sa, t_pslist *sb)
+void	rb(t_state *s)
 {
-	rotate_stack(sa);
-	rotate_stack(sb);
+		if (s->b.start)
+		{
+				push_end(&s->b, s->b.start->num);
+				pop_front(&s->b);
+		}
+}
+
+void	rra(t_state *s)
+{
+		if (s->a.end)
+		{
+			push_front(&s->a, s->a.end->num);
+			pop_end(&s->a);
+		}
+}
+
+void	rrb(t_state *s)
+{
+		if (s->b.end)
+		{
+			push_front(&s->b, s->b.end->num);
+			pop_end(&s->b);
+		}
 }

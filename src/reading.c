@@ -6,14 +6,14 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 07:03:06 by yberries          #+#    #+#             */
-/*   Updated: 2020/10/11 02:13:42 by yberries         ###   ########.fr       */
+/*   Updated: 2020/10/18 11:02:07 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
 
-void             find_nums(t_pslist *sa, char *av)
+void             find_nums(t_stack *a, char *av)
 {
 		char	sign;
 
@@ -27,17 +27,18 @@ void             find_nums(t_pslist *sa, char *av)
 				if ((*av < '0' || *av > '9') && *av != '\0')
 						ft_exit();
 				if (*av >= '0' && *av <= '9')
-						push_end(sa, ps_atoi(&av, sign));
+						push_end(a, ps_atoi(&av, sign));
 				sign = 0;
 		}
 }
 
-void    args_to_stack(t_pslist *sa, int ac, char **av)
+void    args_to_stack(t_stack *a, int ac, char **av)
 {
 		int             i;
 
 		i = -1;
-		create_stack(sa);
+		a->start = NULL;
+		a->end = NULL;
 		while (ac--)
-				find_nums(sa, av[++i]);
+				find_nums(a, av[++i]);
 }
