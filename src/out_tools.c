@@ -6,7 +6,7 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/10 23:45:44 by yberries          #+#    #+#             */
-/*   Updated: 2020/10/18 11:22:59 by yberries         ###   ########.fr       */
+/*   Updated: 2020/10/19 02:59:21 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,23 @@ void    ft_exit()
 		exit(1);
 }
 
-void		out_res(t_state *state)
+void		clean_term(t_state *state)
+{
+		int	i;
+
+		i = (state->a.len > state->b.len) ? state->a.len : state->b.len;
+		i += 3;
+		system("sleep 0.1");
+		while (--i)
+				ft_printf("\033[A\033[2K\r");
+}
+
+void		out_res(t_state *state, char *instr)
 {
 		t_psl	*tmpa;
 		t_psl	*tmpb;
 
-		//	ft_printf("%s\n", instr);
+		ft_printf("     Option: %s%s%s\n", CYN, instr, RES);
 		tmpa = (state->a.start) ? state->a.start : NULL;
 		tmpb = (state->b.start) ? state->b.start : NULL;
 		ft_printf("  Stack A  |  Stack B\n");
@@ -43,4 +54,10 @@ void		out_res(t_state *state)
 				ft_printf("%s%15d%s\n", CYN, tmpb->num, RES);
 				tmpb = tmpb->next;
 		}
+	//	clean_term(state);
+}
+
+void		output(t_state *state, char *instr)
+{
+		ft_printf("%s\n", instr);
 }

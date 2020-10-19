@@ -6,7 +6,7 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 20:01:37 by yberries          #+#    #+#             */
-/*   Updated: 2020/10/18 11:14:22 by yberries         ###   ########.fr       */
+/*   Updated: 2020/10/19 02:35:16 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct	s_psl
 typedef struct	s_stack
 {
 		int		len;
+		int		vislen;
 		t_psl	*start;
 		t_psl	*end;
 }				t_stack;
@@ -45,6 +46,12 @@ typedef struct	s_state
 		t_stack b;
 }				t_state;
 
+typedef struct	s_cmd
+{
+		char	*instr;
+		void	(*f)(t_state *state);
+}				t_cmd;
+
 /* lst_tools  */
 void    push_front(t_stack *s, int i);
 void    pop_front(t_stack *s);
@@ -52,7 +59,8 @@ void    push_end(t_stack *s, int i);
 void	pop_end(t_stack *s);
 
 /* out_tools  */
-void    out_res(t_state *state);
+void    out_res(t_state *state, char *instr);
+void    output(t_state *state, char *instr);
 void	ft_exit(void);
 
 /* ps_tools   */

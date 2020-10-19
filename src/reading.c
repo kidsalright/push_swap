@@ -6,7 +6,7 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 07:03:06 by yberries          #+#    #+#             */
-/*   Updated: 2020/10/18 11:02:07 by yberries         ###   ########.fr       */
+/*   Updated: 2020/10/18 21:34:06 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ void    args_to_stack(t_stack *a, int ac, char **av)
 		i = -1;
 		a->start = NULL;
 		a->end = NULL;
+		a->len = 0;
 		while (ac--)
 				find_nums(a, av[++i]);
+		a->vislen = a->len;
 }

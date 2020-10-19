@@ -6,11 +6,27 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/22 22:34:10 by yberries          #+#    #+#             */
-/*   Updated: 2020/10/18 11:17:11 by yberries         ###   ########.fr       */
+/*   Updated: 2020/10/19 02:58:33 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+t_cmd   g_cmd[] =
+{
+		{"ra", &ra},
+		{"rb", &rb},
+		{"rr", &sa},
+		{"sa", &sa},
+		{"sb", &sb},
+		{"ss", &ss},
+		{"pa", &pa},
+		{"pb", &pb},
+		{"rra", &rra},
+		{"rrb", &rrb},
+		{"rrr", &rrr},
+		{0, NULL}
+};
 
 char	*get_instr(char *line)
 {
@@ -77,10 +93,40 @@ void 	free_inst(t_inst *inst)
 		inst = NULL;
 }
 
+void	start_checking(t_state *state, t_inst *inst)
+{
+		t_inst *tmp;
+		int		i;
+
+		state->b.start = NULL;
+		state->b.end = NULL;
+		state->b.len = 0;
+		tmp = inst;
+		while (tmp->next)
+		{
+				i = 0;
+				while (g_cmd[i].instr)
+				{
+						if (ft_strequ(g_cmd[i].instr, tmp->s))
+								g_cmd[i].f(state);
+						++i;
+				}
+				out_res(state, tmp->s);
+				if (tmp->next->next)
+						clean_term(state);
+				else
+				{
+						clean_term(state);
+						out_res(state, "DONE");
+				}
+				tmp = tmp->next;
+		}
+}
+
 int		main(int ac, char **av)
 {
-		t_state        state;
-		t_inst			*inst;
+		t_state		state;
+		t_inst		*inst;
 
 		if (ac > 1)
 		{
@@ -88,8 +134,8 @@ int		main(int ac, char **av)
 				args_to_stack(&state.a, (ac - (int)state.vis), &av[(int)state.vis]);
 				check_dups(state.a.start);
 				inst = get_instructs();
+				start_checking(&state, inst);
 				free_inst(inst);
-				state.b.start = NULL;
 				free_ps(&state);
 		}
 		return (0);

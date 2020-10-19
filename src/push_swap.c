@@ -6,7 +6,7 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 20:05:17 by yberries          #+#    #+#             */
-/*   Updated: 2020/10/18 09:44:35 by yberries         ###   ########.fr       */
+/*   Updated: 2020/10/18 21:23:46 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		main(int ac, char **av)
 				args_to_stack(&state.a, (ac - (int)state.vis), &av[(int)state.vis]);
 				check_dups(state.a.start);
 				start_alg(&state);
-				out_res(&state);
+				//out_res(&state);
 				free_ps(&state);
 		}
 		return (0);

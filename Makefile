@@ -6,7 +6,7 @@
 #    By: yberries <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/03 05:28:15 by yberries          #+#    #+#              #
-#    Updated: 2020/10/18 09:10:50 by yberries         ###   ########.fr        #
+#    Updated: 2020/10/19 02:36:21 by yberries         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,9 @@ SRCS2 = checker.c\
 		ps_tools.c\
 		lst_tools.c\
 		reading.c\
+		set1.c \
+		set2.c \
+		set3.c \
 		out_tools.c
 
 OBJ_DIR = obj/
@@ -55,13 +58,13 @@ C_CYAN = \033[36m
 
 .PHONY: clean all re fclean
 
-all: $(LIBFT) $(OBJ_DIR) $(NAME1) $(NAME2)
+all: $(NAME1) $(NAME2)
 
-$(NAME1): $(OBJ1)
+$(NAME1): $(LIBFT) $(OBJ_DIR) $(OBJ1)
 	@gcc $(FLAGS) -o $(NAME1) $(INCLUDES) $(OBJ1) $(LIBFT_LNK)
 	@printf "\r$(S_CLN)$(C_GRN)$(NAME1) compiled\n"
 
-$(NAME2): $(OBJ2)
+$(NAME2): $(LIBFT) $(OBJ_DIR) $(OBJ2)
 	@gcc $(FLAGS) -o $(NAME2) $(INCLUDES) $(OBJ2) $(LIBFT_LNK)
 	@printf "\r$(S_CLN)$(C_GRN)$(NAME2) compiled\n"
 
@@ -72,7 +75,7 @@ $(LIBFT):
 	@make -sC $(LIBFT_DIR)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(HDR)
-	@printf "\r$(S_CLN)$(C_CYAN)Compiling"
+	@printf "\r$(S_CLN)$(C_CYAN)Compiling$(S_CLN)"
 	@gcc $(FLAGS) -c $(INCLUDES) $< -o $@
 
 clean:
