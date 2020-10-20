@@ -6,7 +6,7 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/06 16:39:30 by yberries          #+#    #+#             */
-/*   Updated: 2020/10/18 08:12:44 by yberries         ###   ########.fr       */
+/*   Updated: 2020/10/20 07:31:57 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,17 @@
 
 int             is_sorted(t_psl *s)
 {
-		while (s->next)
+		if (s)
 		{
-				if (s->num > s->next->num)
-						return (0);
-				s = s->next;
+				while (s->next)
+				{
+						if (s->num > s->next->num)
+								return (0);
+						s = s->next;
+				}
+				return (1);
 		}
-		return (1);
+		return (0);
 }
 
 int             ps_atoi(char **str, char sign)
@@ -63,12 +67,14 @@ void    free_ps(t_state *s)
 		t_psl *tmp2;
 
 		if (s->a.start)
-				tmp1 = s->a.start;
-		while (tmp1)
 		{
-				tmp2 = tmp1->next;
-				free(tmp1);
-				tmp1 = tmp2;
+				tmp1 = s->a.start;
+				while (tmp1)
+				{
+						tmp2 = tmp1->next;
+						free(tmp1);
+						tmp1 = tmp2;
+				}
 		}
 		if (s->b.start)
 		{

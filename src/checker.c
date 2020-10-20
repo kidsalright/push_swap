@@ -6,7 +6,7 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/22 22:34:10 by yberries          #+#    #+#             */
-/*   Updated: 2020/10/19 02:58:33 by yberries         ###   ########.fr       */
+/*   Updated: 2020/10/20 07:41:25 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,13 +111,10 @@ void	start_checking(t_state *state, t_inst *inst)
 								g_cmd[i].f(state);
 						++i;
 				}
-				out_res(state, tmp->s);
-				if (tmp->next->next)
-						clean_term(state);
-				else
+				if (state->vis == 2)
 				{
+						out_res(state, tmp->s);
 						clean_term(state);
-						out_res(state, "DONE");
 				}
 				tmp = tmp->next;
 		}
@@ -131,10 +128,17 @@ int		main(int ac, char **av)
 		if (ac > 1)
 		{
 				state.vis = (av[1][0] == '-' && av[1][1] == 'v') ? 2 : 1;
-				args_to_stack(&state.a, (ac - (int)state.vis), &av[(int)state.vis]);
+				args_to_stack(&state.a, (ac - (int)state.vis), \
+										&av[(int)state.vis]);
 				check_dups(state.a.start);
 				inst = get_instructs();
 				start_checking(&state, inst);
+				if (is_sorted(state.a.start) && state.b.len == 0)
+						(state.vis == 2) ? out_res(&state, \
+										"\033[32mOK") : ft_printf("OK\n");
+				else
+						(state.vis == 2) ? out_res(&state, \
+										"\033[31mKO") : ft_printf("KO\n");
 				free_inst(inst);
 				free_ps(&state);
 		}

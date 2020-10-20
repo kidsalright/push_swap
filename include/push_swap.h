@@ -6,7 +6,7 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 20:01:37 by yberries          #+#    #+#             */
-/*   Updated: 2020/10/19 02:35:16 by yberries         ###   ########.fr       */
+/*   Updated: 2020/10/20 06:57:02 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 # include "libft.h"
 
-# define CYN "\x1B[36m"
+# define CYN "\033[36m"
+# define YEL "\033[33m"
 # define RES "\033[0m"
 
 typedef struct	s_inst
@@ -60,7 +61,8 @@ void	pop_end(t_stack *s);
 
 /* out_tools  */
 void    out_res(t_state *state, char *instr);
-void    output(t_state *state, char *instr);
+void	clean_term(t_state *state);
+void    ps_output(char *instr);
 void	ft_exit(void);
 
 /* ps_tools   */

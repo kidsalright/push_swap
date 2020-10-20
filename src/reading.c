@@ -6,12 +6,11 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 07:03:06 by yberries          #+#    #+#             */
-/*   Updated: 2020/10/18 21:34:06 by yberries         ###   ########.fr       */
+/*   Updated: 2020/10/20 06:33:30 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
 void             find_nums(t_stack *a, char *av)
 {
