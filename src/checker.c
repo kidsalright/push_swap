@@ -6,7 +6,7 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/22 22:34:10 by yberries          #+#    #+#             */
-/*   Updated: 2020/10/20 07:41:25 by yberries         ###   ########.fr       */
+/*   Updated: 2020/10/20 10:09:35 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,7 @@ int		main(int ac, char **av)
 										&av[(int)state.vis]);
 				check_dups(state.a.start);
 				inst = get_instructs();
+				state.counter = 0;
 				start_checking(&state, inst);
 				if (is_sorted(state.a.start) && state.b.len == 0)
 						(state.vis == 2) ? out_res(&state, \

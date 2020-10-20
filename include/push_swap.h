@@ -6,7 +6,7 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 20:01:37 by yberries          #+#    #+#             */
-/*   Updated: 2020/10/20 06:57:02 by yberries         ###   ########.fr       */
+/*   Updated: 2020/10/20 09:55:49 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct	s_stack
 typedef struct	s_state
 {
 		char	vis;
+		int		counter;
 		t_stack	a;
 		t_stack b;
 }				t_state;
