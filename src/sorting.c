@@ -6,7 +6,7 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 02:56:09 by yberries          #+#    #+#             */
-/*   Updated: 2020/10/21 05:39:51 by yberries         ###   ########.fr       */
+/*   Updated: 2020/10/22 10:47:49 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,26 +22,58 @@ int		find_min(t_stack *a)
 	while (tmp->next)
 	{
 		if (tmp->next->num < num)
-				num = tmp->next->num;
+			num = tmp->next->num;
 		tmp = tmp->next;
 	}
 	return (num);
 }
 
+int		choose_side(t_stack *a, int n)
+{
+	int		i;
+	int		half;
+	t_psl	*tmp;
+
+	i = 0;
+	tmp = a->start;
+	half = a->len / 2;
+	while (i <= half)
+	{
+		if (tmp->num == n)
+			return (1);
+		++i;
+		tmp = tmp->next;
+	}
+	return (0);
+}
+
 void	go(t_state *state)
 {
 	int	min;
+	int	side;
 
 	min = find_min(&state->a);
-	while (state->a.start->num != min)
+	side = choose_side(&state->a, min);
+	if (side == 1)
 	{
-		ra(state);
-		ps_output("ra");
+		while (state->a.start->num != min)
+		{
+			ra(state);
+			ps_output("ra");
+		}
+	}
+	else
+	{
+		while (state->a.start->num != min)
+		{
+			rra(state);
+			ps_output("rra");
+		}
 	}
 	pb(state);
 	ps_output("pb");
 	if (state->a.len != 0)
-			go(state);
+		go(state);
 	while (state->b.len != 0)
 	{
 		pa(state);
@@ -51,17 +83,17 @@ void	go(t_state *state)
 
 void	start_alg(t_state *state)
 {	
-		state->b.start = NULL;
-		state->b.end = NULL;
-		state->b.len = 0;
-		if (!is_sorted(state->a.start))
+	state->b.start = NULL;
+	state->b.end = NULL;
+	state->b.len = 0;
+	if (!is_sorted(state->a.start))
+	{
+		if (state->a.len < 3)
 		{
-				if (state->a.len < 3)
-				{
-						sa(state);
-						ps_output("sa");
-				}
-				else
-						go(state);
+			sa(state);
+			ps_output("sa");
 		}
+		else
+			go(state);
+	}
 }

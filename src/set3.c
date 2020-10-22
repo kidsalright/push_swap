@@ -6,7 +6,7 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 09:07:29 by yberries          #+#    #+#             */
-/*   Updated: 2020/10/18 11:10:22 by yberries         ###   ########.fr       */
+/*   Updated: 2020/10/21 18:24:03 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 void	rrr(t_state *s)
 {
-		rra(s);
-		rrb(s);
+	rra(s);
+	rrb(s);
 }
 
 void    ss(t_state *s)
 {
-		sa(s);
-		sb(s);
+	sa(s);
+	sb(s);
 }
 
 void    rr(t_state *s)
 {
-		ra(s);
-		rb(s);
+	ra(s);
+	rb(s);
 }

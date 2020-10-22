@@ -6,7 +6,7 @@
 #    By: yberries <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/03 05:28:15 by yberries          #+#    #+#              #
-#    Updated: 2020/09/22 23:37:41 by yberries         ###   ########.fr        #
+#    Updated: 2020/10/21 17:16:57 by yberries         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,7 +56,7 @@ $(NAME): $(OBJ)
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@mkdir -p obj
 #@printf "\r$(S_CLN)$(C_CYAN)Assembling $< > $@"
-	@gcc -c $(FLAGS) $(LIBFT_LNK) -I $(HDR_DIR) -I $(LIBFT_DIR) $< -o $@
+	@gcc -c $(FLAGS) -I $(HDR_DIR) -I $(LIBFT_DIR) $< -o $@
 
 clean:
 	@rm -rf $(OBJ_DIR)
