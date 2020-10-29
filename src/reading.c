@@ -6,13 +6,13 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 07:03:06 by yberries          #+#    #+#             */
-/*   Updated: 2020/10/21 18:23:29 by yberries         ###   ########.fr       */
+/*   Updated: 2020/10/24 13:43:12 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void             find_nums(t_stack *a, char *av)
+void	find_nums(t_stack *a, char *av)
 {
 	char	sign;
 
@@ -31,9 +31,9 @@ void             find_nums(t_stack *a, char *av)
 	}
 }
 
-void    args_to_stack(t_stack *a, int ac, char **av)
+void	args_to_stack(t_stack *a, int ac, char **av)
 {
-	int             i;
+	int	i;
 
 	i = -1;
 	a->start = NULL;

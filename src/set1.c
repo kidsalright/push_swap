@@ -6,7 +6,7 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 09:07:29 by yberries          #+#    #+#             */
-/*   Updated: 2020/10/21 18:23:39 by yberries         ###   ########.fr       */
+/*   Updated: 2020/10/24 13:43:38 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	sa(t_state *s)
 {
-	int     tmp;
+	int	tmp;
 
 	if (s->a.start)
 	{
@@ -27,10 +27,9 @@ void	sa(t_state *s)
 	}
 }
 
-
 void	sb(t_state *s)
 {
-	int     tmp;
+	int	tmp;
 
 	if (s->b.start)
 	{

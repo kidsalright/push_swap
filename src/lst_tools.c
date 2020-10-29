@@ -6,7 +6,7 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 01:59:52 by yberries          #+#    #+#             */
-/*   Updated: 2020/10/21 18:20:48 by yberries         ###   ########.fr       */
+/*   Updated: 2020/10/24 13:39:56 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	pop_end(t_stack *s)
 	--s->len;
 }
 
-void    push_front(t_stack *s, int i)
+void	push_front(t_stack *s, int i)
 {
 	t_psl *tmp;
 
@@ -58,9 +58,9 @@ void    push_front(t_stack *s, int i)
 	++s->len;
 }
 
-void    pop_front(t_stack *s)
+void	pop_front(t_stack *s)
 {
-	t_psl   *prev;
+	t_psl	*prev;
 
 	prev = s->start;
 	s->start = s->start->next;
@@ -71,4 +71,3 @@ void    pop_front(t_stack *s)
 	free(prev);
 	--s->len;
 }
-

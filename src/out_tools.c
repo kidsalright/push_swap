@@ -6,13 +6,13 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/10 23:45:44 by yberries          #+#    #+#             */
-/*   Updated: 2020/10/21 18:22:01 by yberries         ###   ########.fr       */
+/*   Updated: 2020/10/24 13:40:51 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void    ft_exit()
+void		ft_exit(void)
 {
 	write(2, "Error\n", 6);
 	exit(1);

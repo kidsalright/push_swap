@@ -6,13 +6,13 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/06 16:39:30 by yberries          #+#    #+#             */
-/*   Updated: 2020/10/21 18:22:11 by yberries         ###   ########.fr       */
+/*   Updated: 2020/10/24 13:42:10 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int             is_sorted(t_psl *s)
+int			is_sorted(t_psl *s)
 {
 	if (s)
 	{
@@ -27,9 +27,9 @@ int             is_sorted(t_psl *s)
 	return (0);
 }
 
-int             ps_atoi(char **str, char sign)
+int			ps_atoi(char **str, char sign)
 {
-	long int        n;
+	long int	n;
 
 	n = 0;
 	while (**str >= '0' && **str <= '9')
@@ -42,7 +42,7 @@ int             ps_atoi(char **str, char sign)
 	return (sign ? (int)-n : (int)n);
 }
 
-void    check_dups(t_psl *head)
+void		check_dups(t_psl *head)
 {
 	t_psl *i;
 	t_psl *j;
@@ -61,7 +61,7 @@ void    check_dups(t_psl *head)
 	}
 }
 
-void    free_ps(t_state *s)
+void		free_ps(t_state *s)
 {
 	t_psl *tmp1;
 	t_psl *tmp2;
