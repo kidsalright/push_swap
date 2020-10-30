@@ -6,7 +6,7 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 02:56:09 by yberries          #+#    #+#             */
-/*   Updated: 2020/10/22 10:47:49 by yberries         ###   ########.fr       */
+/*   Updated: 2020/10/30 14:14:54 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,100 @@ void	go(t_state *state)
 	}
 }
 
+void	out_arr(int	*arr, int len)
+{
+	int	i;
+
+	i = -1;
+	while (len--)
+		ft_printf("%d ", arr[++i]);
+	ft_printf("\n");
+	free(arr);
+}
+
+void	swap(int *a, int *b)
+{
+	if (a != b)
+	{
+		*a ^= *b;
+		*b ^= *a;
+		*a ^= *b;
+	}
+}
+
+int		partition(int *arr, int low, int high)
+{
+	int	pivot;
+	int	i;
+	int	j;
+
+	i = (low - 1);
+	pivot = arr[high];
+	j = low;
+	while (j <= high - 1)
+	{
+		if (arr[j] < pivot)
+		{
+			++i;
+			swap(&arr[i], &arr[j]);
+		}
+		++j;
+	}
+	swap(&arr[i + 1], &arr[high]);
+	return (i + 1);
+}
+
+void	ft_quicksort(int *arr, int low, int high)
+{
+	int	pi;
+
+	if (low < high)
+	{
+		pi = partition(arr, low, high);
+		ft_quicksort(arr, low, pi - 1);
+		ft_quicksort(arr, pi + 1, high);
+	}
+}
+
+void	sort_arr(t_psl *list, int len)
+{
+	int		i;
+	int		*tab;
+	t_psl	*tmp;
+
+	tmp = list;
+	tab = (int *)malloc(sizeof(int) * len);
+	i = -1;
+	while (++i < len)
+	{
+		tab[i] = tmp->num;
+		tmp = tmp->next;
+	}
+	ft_quicksort(tab, 0, len - 1);
+	tmp = list;
+	while (tmp)
+	{
+		i = -1;
+		while (tmp->num != tab[++i]);
+		tmp->index = i;
+		tmp = tmp->next;
+	}
+//	out_arr(tab, len);
+}
+
+void	maybe_do_this_fucking_algo_dude(t_state *state)
+{
+	t_psl *tmp;
+
+	sort_arr(state->a.start, state->a.len);
+	tmp = state->a.start;
+	while (tmp)
+	{
+		ft_printf("%-5d %d\n", tmp->num, tmp->index);
+		tmp = tmp->next;
+	}
+}
+
 void	start_alg(t_state *state)
 {	
 	state->b.start = NULL;
@@ -93,7 +187,9 @@ void	start_alg(t_state *state)
 			sa(state);
 			ps_output("sa");
 		}
-		else
+		else if (state->a.len == 10)
 			go(state);
+		else
+			maybe_do_this_fucking_algo_dude(state);
 	}
 }
