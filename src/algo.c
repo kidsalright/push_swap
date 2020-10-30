@@ -1,31 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set3.c                                             :+:      :+:    :+:   */
+/*   sosort.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/18 09:07:29 by yberries          #+#    #+#             */
-/*   Updated: 2020/10/30 15:39:29 by yberries         ###   ########.fr       */
+/*   Created: 2020/10/30 15:41:49 by yberries          #+#    #+#             */
+/*   Updated: 2020/10/30 15:59:09 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include <push_swap.h>
 
-void	rrr(t_state *s)
+void	marking(t_stack *s)
 {
-	rra(s);
-	rrb(s);
-}
+	t_psl	*tmp;
+	int		i;
 
-void	ss(t_state *s)
-{
-	sa(s);
-	sb(s);
-}
-
-void	rr(t_state *s)
-{
-	ra(s);
-	rb(s);
+	i = 0;
+	tmp = s->start;
+	while (tmp)
+	{
+		tmp->flag = 0;
+		if (tmp->index == 0)
+		{
+			tmp->flag = 1;
+			++i;
+		}
+		if (tmp->index == i)
+		{
+			tmp->flag = 1;
+			++i;
+		}
+		tmp = tmp->next;
+	}
 }
