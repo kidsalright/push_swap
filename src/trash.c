@@ -6,7 +6,7 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/30 15:45:30 by yberries          #+#    #+#             */
-/*   Updated: 2020/10/30 17:36:12 by yberries         ###   ########.fr       */
+/*   Updated: 2020/11/10 01:25:32 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int		choose_side(t_stack *a, int n)
 	return (0);
 }
 
-void	fucker_sort(t_state *state)
+void	fucking_sort(t_state *state)
 {
 	int	min;
 	int	side;
@@ -73,7 +73,7 @@ void	fucker_sort(t_state *state)
 	pb(state);
 	ps_output("pb");
 	if (state->a.len != 0)
-		fucker_sort(state);
+		fucking_sort(state);
 	while (state->b.len != 0)
 	{
 		pa(state);
