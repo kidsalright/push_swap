@@ -6,7 +6,7 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 02:56:09 by yberries          #+#    #+#             */
-/*   Updated: 2020/10/30 18:15:16 by yberries         ###   ########.fr       */
+/*   Updated: 2020/11/09 17:49:54 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,45 +16,41 @@ void	out_info(t_psl *tmp)
 {
 	while (tmp)
 	{
-		ft_printf("%-5d %d   %s\n", tmp->num, tmp->index, (tmp->flag) ? "true" : "false");
+		ft_printf("%-11d %d   %s\n", tmp->num, tmp->index, (tmp->flag) ? "true" : "false");
 		tmp = tmp->next;
 	}
+	write(1, "\n", 1);
 }
 
-void	set_index(t_psl *list, int len)
+void	choose_best_head(t_state *state)
 {
-	int		i;
-	int		*tab;
+	int		count;
+	int		best;
+	int		head;
 	t_psl	*tmp;
 
-	tmp = list;
-	tab = (int *)malloc(sizeof(int) * len);
-	i = -1;
-	while (++i < len)
+	best = 0;
+	tmp = state->a.start;
+	while (tmp && (count = mark_increase(&state->a ,tmp->num)))
 	{
-		tab[i] = tmp->num;
+		if (count > best)
+		{
+			best = count;
+			head = tmp->num;
+		}
+		ft_printf("marking by head - %d\n", tmp->num);
+		out_info(state->a.start);
 		tmp = tmp->next;
 	}
-	ft_quicksort(tab, 0, len - 1);
-	tmp = list;
-	while (tmp)
-	{
-		i = -1;
-		while (tmp->num != tab[i])
-			++i;
-		tmp->index = i;
-		tmp = tmp->next;
-	}
+	ft_printf("so we've chosen %d head with %d numbers to keep in stack A, here it is\n", head, best);
+	mark_increase(&state->a, head);
+	out_info(state->a.start);
 }
 
 void	maybe_do_this_fucking_algo_dude(t_state *state)
 {
-	t_psl *tmp;
-
 	set_index(state->a.start, state->a.len);
-	tmp = state->a.start;
-	marking(&state->a);
-	out_info(state->a.start);
+	choose_best_head(state);
 }
 
 void	start_alg(t_state *state)

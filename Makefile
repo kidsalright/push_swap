@@ -6,7 +6,7 @@
 #    By: yberries <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/03 05:28:15 by yberries          #+#    #+#              #
-#    Updated: 2020/10/30 18:41:06 by yberries         ###   ########.fr        #
+#    Updated: 2020/11/09 17:10:14 by yberries         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRCS1 = push_swap.c \
 		sorting.c \
 		algo.c \
 		indexation.c \
+		marking.c \
 		set1.c \
 		set2.c \
 		set3.c \

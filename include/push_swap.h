@@ -6,7 +6,7 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 20:01:37 by yberries          #+#    #+#             */
-/*   Updated: 2020/10/30 18:31:06 by yberries         ###   ########.fr       */
+/*   Updated: 2020/11/09 17:34:08 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void				check_dups(t_psl *head);
 void				free_ps(t_state *s);
 void				args_to_stack(t_stack *s, int ac, char **av);
 void				start_alg(t_state *s);
-void				marking(t_stack *s);
+void				set_index(t_psl *list, int len);
 void				ft_quicksort(int *arr, int low, int high);
 void				sa(t_state *s);
 void				sb(t_state *s);
