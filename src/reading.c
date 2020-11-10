@@ -6,7 +6,7 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 07:03:06 by yberries          #+#    #+#             */
-/*   Updated: 2020/10/24 13:43:12 by yberries         ###   ########.fr       */
+/*   Updated: 2020/11/10 18:32:15 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	find_nums(t_stack *a, char *av)
 		if ((*av < '0' || *av > '9') && *av != '\0')
 			ft_exit();
 		if (*av >= '0' && *av <= '9')
-			push_end(a, ps_atoi(&av, sign));
+			push_read(a, ps_atoi(&av, sign));
 		sign = 0;
 	}
 }

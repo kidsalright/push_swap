@@ -6,7 +6,7 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 20:01:37 by yberries          #+#    #+#             */
-/*   Updated: 2020/11/09 17:34:08 by yberries         ###   ########.fr       */
+/*   Updated: 2020/11/10 18:36:06 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,10 @@ typedef struct		s_cmd
 	void			(*f)(t_state *state);
 }					t_cmd;
 
-void				push_front(t_stack *s, int i);
+void				push_front(t_stack *s, t_psl *push);
 void				pop_front(t_stack *s);
-void				push_end(t_stack *s, int i);
+void				push_end(t_stack *s, t_psl *push);
+void				push_read(t_stack *s, int i);
 void				pop_end(t_stack *s);
 void				out_res(t_state *state, char *instr);
 void				clean_term(t_state *state);
@@ -83,6 +84,5 @@ void				rrb(t_state *s);
 void				rrr(t_state *s);
 void				rr(t_state *s);
 void				ss(t_state *s);
-void				fucker_sort(t_state *state);
 
 #endif

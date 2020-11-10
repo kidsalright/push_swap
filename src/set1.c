@@ -6,7 +6,7 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 09:07:29 by yberries          #+#    #+#             */
-/*   Updated: 2020/10/24 13:43:38 by yberries         ###   ########.fr       */
+/*   Updated: 2020/11/10 18:57:08 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	pa(t_state *s)
 {
 	if (s->b.start)
 	{
-		push_front(&s->a, s->b.start->num);
+		push_front(&s->a, s->b.start);
 		pop_front(&s->b);
 	}
 }
@@ -55,7 +55,7 @@ void	pb(t_state *s)
 {
 	if (s->a.start)
 	{
-		push_front(&s->b, s->a.start->num);
+		push_front(&s->b, s->a.start);
 		pop_front(&s->a);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/30 15:45:30 by yberries          #+#    #+#             */
-/*   Updated: 2020/11/10 01:25:32 by yberries         ###   ########.fr       */
+/*   Updated: 2020/11/10 19:00:54 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,15 +79,4 @@ void	fucking_sort(t_state *state)
 		pa(state);
 		ps_output("pa");
 	}
-}
-
-void	out_arr(int *arr, int len)
-{
-	int	i;
-
-	i = -1;
-	while (len--)
-		ft_printf("%d ", arr[++i]);
-	ft_printf("\n");
-	free(arr);
 }

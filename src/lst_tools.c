@@ -6,18 +6,36 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 01:59:52 by yberries          #+#    #+#             */
-/*   Updated: 2020/11/09 16:47:19 by yberries         ###   ########.fr       */
+/*   Updated: 2020/11/10 18:32:03 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	push_end(t_stack *s, int i)
+void	push_read(t_stack *s, int i)
 {
 	t_psl *tmp;
 
 	tmp = (t_psl *)malloc(sizeof(t_psl));
 	tmp->num = i;
+	tmp->flag = 0;
+	tmp->next = NULL;
+	tmp->prev = s->end;
+	if (s->end)
+		s->end->next = tmp;
+	s->end = tmp;
+	if (s->start == NULL)
+		s->start = tmp;
+	++s->len;
+}
+
+void	push_end(t_stack *s, t_psl *push)
+{
+	t_psl *tmp;
+
+	tmp = (t_psl *)malloc(sizeof(t_psl));
+	tmp->num = push->num;
+	tmp->index = push->index;
 	tmp->flag = 0;
 	tmp->next = NULL;
 	tmp->prev = s->end;
@@ -43,12 +61,13 @@ void	pop_end(t_stack *s)
 	--s->len;
 }
 
-void	push_front(t_stack *s, int i)
+void	push_front(t_stack *s, t_psl *push)
 {
 	t_psl *tmp;
 
 	tmp = (t_psl *)malloc(sizeof(t_psl));
-	tmp->num = i;
+	tmp->num = push->num;
+	tmp->index = push->index;
 	tmp->flag = 0;
 	tmp->next = s->start;
 	tmp->prev = NULL;
