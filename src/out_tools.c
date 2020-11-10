@@ -6,7 +6,7 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/10 23:45:44 by yberries          #+#    #+#             */
-/*   Updated: 2020/10/30 15:59:29 by yberries         ###   ########.fr       */
+/*   Updated: 2020/11/10 22:48:52 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,69 @@ void		out_res(t_state *state, char *instr)
 		tmpb = tmpb->next;
 	}
 	ft_printf("%14s\033[32m%d%s\n", " ", state->counter++, RES);
+}
+
+void    put_res(t_state *state, int i)
+{
+	t_inst  *tmp;
+	t_inst  *head;
+
+	head = state->res;
+	if (!head)
+	{
+		head = malloc(sizeof(t_inst));
+		head->opt = i;
+		head->next = NULL;
+	}
+	else
+	{
+		tmp = head;
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = malloc(sizeof(t_inst));
+		tmp->next->opt = i;
+		tmp->next->next = NULL;
+	}
+	state->res = head;
+}
+
+void    printer(int     i)
+{
+	if (i == SA)
+		ft_printf("sa\n");
+	else if (i == SB)
+		ft_printf("sb\n");
+	else if (i == SS)
+		ft_printf("ss\n");
+	else if (i == PA)
+		ft_printf("pa\n");
+	else if (i == PB)
+		ft_printf("pb\n");
+	else if (i == RA)
+		ft_printf("ra\n");
+	else if (i == RB)
+		ft_printf("rb\n");
+	else if (i == RR)
+		ft_printf("rr\n");
+	else if (i == RRA)
+		ft_printf("rra\n");
+	else if (i == RRB)
+		ft_printf("rrb\n");
+	else if (i == RRR)
+		ft_printf("rrr\n");
+}
+
+void    new_out(t_state *state)
+{
+	t_inst *tmp;
+
+	while (state->res)
+	{
+		tmp = state->res->next;
+		printer(state->res->opt);
+		free(state->res);
+		state->res = tmp;
+	}
 }
 
 void		ps_output(char *instr)

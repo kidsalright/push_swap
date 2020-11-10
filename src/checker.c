@@ -6,7 +6,7 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/22 22:34:10 by yberries          #+#    #+#             */
-/*   Updated: 2020/10/22 10:50:47 by yberries         ###   ########.fr       */
+/*   Updated: 2020/11/10 22:54:06 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,7 @@ int		main(int ac, char **av)
 
 	if (ac > 1)
 	{
+		state.t = 0;
 		state.vis = (av[1][0] == '-' && av[1][1] == 'v') ? 2 : 1;
 		args_to_stack(&state.a, (ac - (int)state.vis), \
 				&av[(int)state.vis]);

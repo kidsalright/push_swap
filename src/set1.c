@@ -6,7 +6,7 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 09:07:29 by yberries          #+#    #+#             */
-/*   Updated: 2020/11/10 18:57:08 by yberries         ###   ########.fr       */
+/*   Updated: 2020/11/10 22:56:32 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	sa(t_state *s)
 			tmp = s->a.start->next->num;
 			s->a.start->next->num = s->a.start->num;
 			s->a.start->num = tmp;
+			if (s->t)
+				put_res(s, SA);
 		}
 	}
 }
@@ -38,6 +40,8 @@ void	sb(t_state *s)
 			tmp = s->b.start->next->num;
 			s->b.start->next->num = s->b.start->num;
 			s->b.start->num = tmp;
+			if (s->t)
+				put_res(s, SB);
 		}
 	}
 }
@@ -48,6 +52,8 @@ void	pa(t_state *s)
 	{
 		push_front(&s->a, s->b.start);
 		pop_front(&s->b);
+		if (s->t)
+			put_res(s, PA);
 	}
 }
 
@@ -57,5 +63,7 @@ void	pb(t_state *s)
 	{
 		push_front(&s->b, s->a.start);
 		pop_front(&s->a);
+		if (s->t)
+			put_res(s, PB);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 20:01:37 by yberries          #+#    #+#             */
-/*   Updated: 2020/11/10 18:36:06 by yberries         ###   ########.fr       */
+/*   Updated: 2020/11/10 22:52:16 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 typedef struct		s_inst
 {
 	char			*s;
+	int				opt;
 	struct s_inst	*next;
 }					t_inst;
 
@@ -45,9 +46,11 @@ typedef struct		s_stack
 typedef struct		s_state
 {
 	char			vis;
+	char			t;
 	int				counter;
 	t_stack			a;
 	t_stack			b;
+	t_inst			*res;
 }					t_state;
 
 typedef struct		s_cmd
@@ -55,6 +58,22 @@ typedef struct		s_cmd
 	char			*instr;
 	void			(*f)(t_state *state);
 }					t_cmd;
+
+enum					e_cmds
+{
+	SA,
+	SB,
+	SS,
+	PA,
+	PB,
+	RA,
+	RB,
+	RR,
+	RRA,
+	RRB,
+	RRR,
+};
+
 
 void				push_front(t_stack *s, t_psl *push);
 void				pop_front(t_stack *s);
@@ -84,5 +103,6 @@ void				rrb(t_state *s);
 void				rrr(t_state *s);
 void				rr(t_state *s);
 void				ss(t_state *s);
+void				put_res(t_state *state, int i);
 
 #endif
