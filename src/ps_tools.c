@@ -6,11 +6,17 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/06 16:39:30 by yberries          #+#    #+#             */
-/*   Updated: 2020/10/24 13:42:10 by yberries         ###   ########.fr       */
+/*   Updated: 2020/11/10 23:24:19 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void		ft_exit(void)
+{
+	write(2, "Error\n", 6);
+	exit(1);
+}
 
 int			is_sorted(t_psl *s)
 {

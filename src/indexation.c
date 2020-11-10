@@ -6,7 +6,7 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/30 17:37:25 by yberries          #+#    #+#             */
-/*   Updated: 2020/11/09 16:58:21 by yberries         ###   ########.fr       */
+/*   Updated: 2020/11/11 02:03:43 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,7 @@ int		partition(int *arr, int low, int high)
 	while (j <= high - 1)
 	{
 		if (arr[j] < pivot)
-		{
-			++i;
-			swap(&arr[i], &arr[j]);
-		}
+			swap(&arr[++i], &arr[j]);
 		++j;
 	}
 	swap(&arr[i + 1], &arr[high]);
@@ -80,4 +77,5 @@ void	set_index(t_psl *list, int len)
 		tmp->index = i;
 		tmp = tmp->next;
 	}
+	free(tab);
 }

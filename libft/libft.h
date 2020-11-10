@@ -6,7 +6,7 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 15:16:15 by yberries          #+#    #+#             */
-/*   Updated: 2020/10/30 18:21:46 by yberries         ###   ########.fr       */
+/*   Updated: 2020/11/10 23:17:40 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <fcntl.h>
 # include <limits.h>
 
-# define BUFF_SIZE 8
+# define BUFF_SIZE 2
 
 typedef struct			s_file
 {

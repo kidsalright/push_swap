@@ -6,17 +6,11 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/10 23:45:44 by yberries          #+#    #+#             */
-/*   Updated: 2020/11/10 22:48:52 by yberries         ###   ########.fr       */
+/*   Updated: 2020/11/10 23:24:44 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void		ft_exit(void)
-{
-	write(2, "Error\n", 6);
-	exit(1);
-}
 
 void		clean_term(t_state *state)
 {
