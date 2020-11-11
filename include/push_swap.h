@@ -6,7 +6,7 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 20:01:37 by yberries          #+#    #+#             */
-/*   Updated: 2020/11/11 01:50:13 by yberries         ###   ########.fr       */
+/*   Updated: 2020/11/11 16:50:28 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ typedef struct		s_psl
 typedef struct		s_stack
 {
 	int				len;
-	int				vislen;
 	t_psl			*start;
 	t_psl			*end;
 }					t_stack;
@@ -48,6 +47,7 @@ typedef struct		s_state
 	char			vis;
 	char			t;
 	int				counter;
+	int				min;
 	t_stack			a;
 	t_stack			b;
 	t_inst			*res;

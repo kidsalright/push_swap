@@ -6,7 +6,7 @@
 #    By: yberries <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/03 05:28:15 by yberries          #+#    #+#              #
-#    Updated: 2020/11/10 22:47:53 by yberries         ###   ########.fr        #
+#    Updated: 2020/11/12 00:42:49 by yberries         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ SRCS1 = push_swap.c \
 		set2.c \
 		set3.c \
 		out_tools.c \
+		quick_tools.c \
 		trash.c
 SRCS2 = checker.c \
 		ps_tools.c \

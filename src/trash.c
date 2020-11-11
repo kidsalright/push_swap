@@ -6,7 +6,7 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/30 15:45:30 by yberries          #+#    #+#             */
-/*   Updated: 2020/11/11 02:05:41 by yberries         ###   ########.fr       */
+/*   Updated: 2020/11/11 23:06:49 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void    out_info(t_psl *tmp)
 	ft_printf("numbers          indexes\n");
 	while (tmp)
 	{
-	//	ft_printf("%-11d %4d   %s\n", tmp->num, tmp->index, (tmp->flag) ? "true" : "false");
+		//	ft_printf("%-11d %4d   %s\n", tmp->num, tmp->index, (tmp->flag) ? "true" : "false");
 		ft_printf("%-11d %4d\n", tmp->num, tmp->index, (tmp->flag) ? "true" : "false");
 		tmp = tmp->next;
 	}
@@ -81,20 +81,47 @@ void	fucking_sort(t_state *state)
 	min = find_min(&state->a);
 	side = choose_side(&state->a, min);
 	if (side == 1)
-	{
 		while (state->a.start->num != min)
 			ra(state);
-	}
 	else
-	{
 		while (state->a.start->num != min)
 			rra(state);
-	}
 	pb(state);
 	if (state->a.len != 0)
 		fucking_sort(state);
 	while (state->b.len != 0)
-	{
 		pa(state);
+}
+
+void    choose_best_head(t_state *state)
+{
+	int             count;
+	int             best;
+	int             head;
+	t_psl   *tmp;
+
+	best = 0;
+	tmp = state->a.start;
+	while (tmp && (count = mark_increase(&state->a ,tmp->num)))
+	{
+		if (count > best)
+		{
+			best = count;
+			head = tmp->num;
+		}
+		tmp = tmp->next;
+	}
+	mark_increase(&state->a, head);
+	count = state->a.len - best;
+	while (count)
+	{
+		tmp = state->a.start;
+		if (tmp->flag == 0)
+		{
+			pb(state);
+			--count;
+		}
+		else
+			ra(state);
 	}
 }
