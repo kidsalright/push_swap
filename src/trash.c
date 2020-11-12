@@ -6,7 +6,7 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/30 15:45:30 by yberries          #+#    #+#             */
-/*   Updated: 2020/11/11 23:06:49 by yberries         ###   ########.fr       */
+/*   Updated: 2020/11/12 08:15:24 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void    out_info(t_psl *tmp)
 {
-	ft_printf("numbers          indexes\n");
+	ft_printf("numbers          order    index\n");
 	while (tmp)
 	{
 		//	ft_printf("%-11d %4d   %s\n", tmp->num, tmp->index, (tmp->flag) ? "true" : "false");
-		ft_printf("%-11d %4d\n", tmp->num, tmp->index, (tmp->flag) ? "true" : "false");
+		ft_printf("%-11d %4d   %2d\n", tmp->num, tmp->index, tmp->order, (tmp->flag) ? "true" : "false");
 		tmp = tmp->next;
 	}
 	write(1, "\n", 1);
@@ -36,6 +36,22 @@ int             min_ind(t_psl *s)
 		s = s->next;
 	}
 	return (min);
+}
+
+int		find_max(t_stack *a)
+{
+	t_psl	*tmp;
+	int		num;
+
+	tmp = a->start;
+	num = tmp->num;
+	while (tmp->next)
+	{
+		if (tmp->next->num > num)
+			num = tmp->next->num;
+		tmp = tmp->next;
+	}
+	return (num);
 }
 
 int		find_min(t_stack *a)

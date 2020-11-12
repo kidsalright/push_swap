@@ -6,7 +6,7 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 20:01:37 by yberries          #+#    #+#             */
-/*   Updated: 2020/11/11 16:50:28 by yberries         ###   ########.fr       */
+/*   Updated: 2020/11/12 07:02:04 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct		s_psl
 	char			flag : 1;
 	int				num;
 	int				index;
+	int				order;
 	struct s_psl	*prev;
 	struct s_psl	*next;
 }					t_psl;

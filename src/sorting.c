@@ -6,7 +6,7 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 02:56:09 by yberries          #+#    #+#             */
-/*   Updated: 2020/11/12 00:48:06 by yberries         ###   ########.fr       */
+/*   Updated: 2020/11/12 08:26:33 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,18 +100,83 @@ void	quick_try(t_state *state, t_stack *curr, t_stack *other, int first, int las
 		rotate(curr);
 		out_res(state, "heh");
 	}
-	quick_try(state, curr, other, med + 1, last, 1);
-	quick_try(state, other, curr, first, med, 0);
+	//	quick_try(state, curr, other, med + 1, last, 1);
+	//	quick_try(state, other, curr, first, med, 0);
+}
+
+void	order(t_psl *tmp)
+{
+	int i;
+
+	i = 1;
+	while (tmp)
+	{
+		tmp->order = i;
+		++i;
+		tmp = tmp->next;
+	}
+}
+
+void	try_more(t_state *state)
+{
+	int	med;
+	int	min;
+	int	max;
+	int	side;
+	int	i;
+
+	med = state->a.len / 2;
+	i = med;
+	while (i)
+	{
+		if (state->a.start->index < med)
+		{
+			pb(state);
+			--i;
+		}
+		else
+			ra(state);
+	}
+	i = 0;
+	while (state->a.start)
+	{
+		min = find_min(&state->a);
+		side = choose_side(&state->a, min);
+		if (side == 1)
+			while (state->a.start->num != min)
+				ra(state);
+		else
+			while (state->a.start->num != min)
+				rra(state);
+		pb(state);
+		++i;
+	}
+	while (i--)
+		pa(state);
+	while (state->b.start)
+	{
+		max = find_max(&state->b);
+		side = choose_side(&state->b, max);
+		if (side == 1)
+			while (state->b.start->num != max)
+				rb(state);
+		else
+			while (state->b.start->num != max)
+				rrb(state);
+		pa(state);
+	}
 }
 
 void	sorting_algo(t_state *state)
 {
 	set_index(state->a.start, state->a.len);
 	//	choose_best_head(state);
-	quick_try(state, &state->a, &state->b, 0, state->a.len, 0);
-	out_info(state->a.start);
-//	quicksort_list(state->a.start, state->a.end, state);
-	out_res(state, "heh");
+	//	quicksort_list(state->a.start, state->a.end, state);
+	//		quick_try(state, &state->a, &state->b, 0, state->a.len, 0);
+	try_more(state);
+	//	out_info(state->a.start);
+	//	out_info(state->b.start);
+	//	out_res(state, "");
 }
 
 void	start_alg(t_state *state)
@@ -126,7 +191,7 @@ void	start_alg(t_state *state)
 			ps_output("sa");
 		else if (state->a.len == 3)
 			sort_three(state);
-		//		else if (state->a.len > 15)
+		//		else if (state->a.len > 25)
 		//			fucking_sort(state);
 		else
 			sorting_algo(state);
