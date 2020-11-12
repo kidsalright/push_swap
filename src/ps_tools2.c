@@ -6,36 +6,21 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/30 15:45:30 by yberries          #+#    #+#             */
-/*   Updated: 2020/11/12 08:15:24 by yberries         ###   ########.fr       */
+/*   Updated: 2020/11/12 08:40:23 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <push_swap.h>
 
-void    out_info(t_psl *tmp)
+void	out_info(t_psl *tmp)
 {
 	ft_printf("numbers          order    index\n");
 	while (tmp)
 	{
-		//	ft_printf("%-11d %4d   %s\n", tmp->num, tmp->index, (tmp->flag) ? "true" : "false");
-		ft_printf("%-11d %4d   %2d\n", tmp->num, tmp->index, tmp->order, (tmp->flag) ? "true" : "false");
+		ft_printf("%-11d %4d   %2d\n", tmp->num, tmp->index);
 		tmp = tmp->next;
 	}
 	write(1, "\n", 1);
-}
-
-int             min_ind(t_psl *s)
-{
-	int     min;
-
-	min = s->index;
-	while (s)
-	{
-		if (s->index < min)
-			min = s->index;
-		s = s->next;
-	}
-	return (min);
 }
 
 int		find_max(t_stack *a)
@@ -107,37 +92,4 @@ void	fucking_sort(t_state *state)
 		fucking_sort(state);
 	while (state->b.len != 0)
 		pa(state);
-}
-
-void    choose_best_head(t_state *state)
-{
-	int             count;
-	int             best;
-	int             head;
-	t_psl   *tmp;
-
-	best = 0;
-	tmp = state->a.start;
-	while (tmp && (count = mark_increase(&state->a ,tmp->num)))
-	{
-		if (count > best)
-		{
-			best = count;
-			head = tmp->num;
-		}
-		tmp = tmp->next;
-	}
-	mark_increase(&state->a, head);
-	count = state->a.len - best;
-	while (count)
-	{
-		tmp = state->a.start;
-		if (tmp->flag == 0)
-		{
-			pb(state);
-			--count;
-		}
-		else
-			ra(state);
-	}
 }

@@ -6,7 +6,7 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 02:56:09 by yberries          #+#    #+#             */
-/*   Updated: 2020/11/12 08:26:33 by yberries         ###   ########.fr       */
+/*   Updated: 2020/11/12 09:19:43 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,105 +40,14 @@ void	sort_three(t_state *state)
 		put_res(state, RRA);
 }
 
-t_psl	*partition_list(t_psl *l, t_psl *r)
+void	push_first(t_state *state)
 {
-	int		pivot;
-	t_psl	*start;
-	t_psl	*end;
-
-	pivot = r->num;
-	start = l->prev;
-	end = l;
-	while (end != r)
-	{
-		if (end->num <= pivot)
-		{
-			if (start == NULL)
-				start = l;
-			else
-				start = start->next;
-			swap(&(start->num), &(end->num));
-		}
-		end = end->next;
-	}
-	if (start == NULL)
-		start = l;
-	else
-		start = start->next;
-	swap(&(start->num), &(end->num));
-	return (start);
-}
-
-void	quicksort_list(t_psl *l, t_psl *r, t_state *state)
-{
-	t_psl	*p;
-
-	if (r != NULL && l != r && l != r->next)
-	{
-		out_res(state, "heh");
-		p = partition_list(l, r);
-		quicksort_list(l, p->prev, state);
-		quicksort_list(p->next, r, state);
-	}
-}
-
-void	quick_try(t_state *state, t_stack *curr, t_stack *other, int first, int last, char fin)
-{
-	int		med;
-	int		len_curr;
-	int		i;
-
-	med = (first + last) / 2;
-	i = med;
-	while (i)
-	{
-		if (curr->start->index < med)
-		{
-			push(curr, other);
-			--i;
-		}
-		rotate(curr);
-		out_res(state, "heh");
-	}
-	//	quick_try(state, curr, other, med + 1, last, 1);
-	//	quick_try(state, other, curr, first, med, 0);
-}
-
-void	order(t_psl *tmp)
-{
-	int i;
-
-	i = 1;
-	while (tmp)
-	{
-		tmp->order = i;
-		++i;
-		tmp = tmp->next;
-	}
-}
-
-void	try_more(t_state *state)
-{
-	int	med;
 	int	min;
-	int	max;
 	int	side;
 	int	i;
 
-	med = state->a.len / 2;
-	i = med;
-	while (i)
-	{
-		if (state->a.start->index < med)
-		{
-			pb(state);
-			--i;
-		}
-		else
-			ra(state);
-	}
 	i = 0;
-	while (state->a.start)
+	while (state->a.start->next)
 	{
 		min = find_min(&state->a);
 		side = choose_side(&state->a, min);
@@ -153,6 +62,13 @@ void	try_more(t_state *state)
 	}
 	while (i--)
 		pa(state);
+}
+
+void	push_last(t_state *state)
+{
+	int	max;
+	int	side;
+
 	while (state->b.start)
 	{
 		max = find_max(&state->b);
@@ -167,16 +83,24 @@ void	try_more(t_state *state)
 	}
 }
 
-void	sorting_algo(t_state *state)
+void	heh_sort(t_state *state)
 {
+	int	med;
+	int	i;
+
 	set_index(state->a.start, state->a.len);
-	//	choose_best_head(state);
-	//	quicksort_list(state->a.start, state->a.end, state);
-	//		quick_try(state, &state->a, &state->b, 0, state->a.len, 0);
-	try_more(state);
-	//	out_info(state->a.start);
-	//	out_info(state->b.start);
-	//	out_res(state, "");
+	med = state->a.len / 2;
+	i = med;
+	while (i)
+		if (state->a.start->index < med)
+		{
+			pb(state);
+			--i;
+		}
+		else
+			ra(state);
+	push_first(state);
+	push_last(state);
 }
 
 void	start_alg(t_state *state)
@@ -188,13 +112,11 @@ void	start_alg(t_state *state)
 	if (!is_sorted(state->a.start))
 	{
 		if (state->a.len < 3)
-			ps_output("sa");
+			put_res(state, SA);
 		else if (state->a.len == 3)
 			sort_three(state);
-		//		else if (state->a.len > 25)
-		//			fucking_sort(state);
 		else
-			sorting_algo(state);
+			heh_sort(state);
 	}
 	new_out(state);
 }
