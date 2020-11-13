@@ -6,7 +6,7 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 01:59:52 by yberries          #+#    #+#             */
-/*   Updated: 2020/11/12 08:53:56 by yberries         ###   ########.fr       */
+/*   Updated: 2020/11/13 06:42:55 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ void	push_read(t_stack *s, int i)
 {
 	t_psl *tmp;
 
-	tmp = (t_psl *)malloc(sizeof(t_psl));
+	if (!(tmp = (t_psl *)malloc(sizeof(t_psl))))
+		ft_exit();
 	tmp->num = i;
 	tmp->next = NULL;
 	tmp->prev = s->end;
@@ -32,7 +33,8 @@ void	push_end(t_stack *s, t_psl *push)
 {
 	t_psl *tmp;
 
-	tmp = (t_psl *)malloc(sizeof(t_psl));
+	if (!(tmp = (t_psl *)malloc(sizeof(t_psl))))
+		ft_exit();
 	tmp->num = push->num;
 	tmp->index = push->index;
 	tmp->next = NULL;
@@ -63,7 +65,8 @@ void	push_front(t_stack *s, t_psl *push)
 {
 	t_psl *tmp;
 
-	tmp = (t_psl *)malloc(sizeof(t_psl));
+	if (!(tmp = (t_psl *)malloc(sizeof(t_psl))))
+		ft_exit();
 	tmp->num = push->num;
 	tmp->index = push->index;
 	tmp->next = s->start;

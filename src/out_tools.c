@@ -6,7 +6,7 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/10 23:45:44 by yberries          #+#    #+#             */
-/*   Updated: 2020/11/13 04:48:49 by yberries         ###   ########.fr       */
+/*   Updated: 2020/11/13 06:45:41 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ void		put_res(t_state *state, int i)
 	head = state->res;
 	if (!head)
 	{
-		head = malloc(sizeof(t_inst));
+		if (!(head = (t_inst *)malloc(sizeof(t_inst))))
+			ft_exit();
 		head->opt = i;
 		head->next = NULL;
 	}
@@ -68,7 +69,8 @@ void		put_res(t_state *state, int i)
 		tmp = head;
 		while (tmp->next)
 			tmp = tmp->next;
-		tmp->next = malloc(sizeof(t_inst));
+		if (!(tmp->next = (t_inst *)malloc(sizeof(t_inst))))
+			ft_exit();
 		tmp->next->opt = i;
 		tmp->next->next = NULL;
 	}
@@ -78,27 +80,27 @@ void		put_res(t_state *state, int i)
 void		printer(int i)
 {
 	if (i == SA)
-		ft_printf("sa\n");
+		write(1, "sa\n", 3);
 	else if (i == SB)
-		ft_printf("sb\n");
+		write(1, "sb\n", 3);
 	else if (i == SS)
-		ft_printf("ss\n");
+		write(1, "ss\n", 3);
 	else if (i == PA)
-		ft_printf("pa\n");
+		write(1, "pa\n", 3);
 	else if (i == PB)
-		ft_printf("pb\n");
+		write(1, "pb\n", 3);
 	else if (i == RA)
-		ft_printf("ra\n");
+		write(1, "ra\n", 3);
 	else if (i == RB)
-		ft_printf("rb\n");
+		write(1, "rb\n", 3);
 	else if (i == RR)
-		ft_printf("rr\n");
+		write(1, "rr\n", 3);
 	else if (i == RRA)
-		ft_printf("rra\n");
+		write(1, "rra\n", 4);
 	else if (i == RRB)
-		ft_printf("rrb\n");
+		write(1, "rrb\n", 4);
 	else if (i == RRR)
-		ft_printf("rrr\n");
+		write(1, "rrr\n", 4);
 }
 
 void		new_out(t_state *state)

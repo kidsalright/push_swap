@@ -6,7 +6,7 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 02:56:09 by yberries          #+#    #+#             */
-/*   Updated: 2020/11/13 05:48:11 by yberries         ###   ########.fr       */
+/*   Updated: 2020/11/13 17:57:00 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,8 +114,10 @@ void	start_alg(t_state *state)
 			sort_three(state);
 		else if (state->a.len < 150)
 			try_chunks(state, 5);
-		else
+		else if (state->a.len < 450)
 			try_chunks(state, 10);
+		else
+			try_chunks(state, 14);
 	}
 	new_out(state);
 }

@@ -6,7 +6,7 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/22 22:34:10 by yberries          #+#    #+#             */
-/*   Updated: 2020/11/11 03:54:07 by yberries         ###   ########.fr       */
+/*   Updated: 2020/11/13 06:39:43 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,16 @@ t_inst	*get_instructs(void)
 	t_inst	*tmp;
 	char	*line;
 
-	head = (t_inst *)malloc(sizeof(t_inst));
+	if (!(head = (t_inst *)malloc(sizeof(t_inst))))
+		ft_exit();
 	head->next = NULL;
 	tmp = head;
 	line = NULL;
 	while (get_next_line(0, &line))
 	{
 		tmp->s = ft_strdup(get_instr(line));
-		tmp->next = (t_inst *)malloc(sizeof(t_inst));
+		if (!(tmp->next = (t_inst *)malloc(sizeof(t_inst))))
+			ft_exit();
 		ft_strdel(&line);
 		tmp = tmp->next;
 	}

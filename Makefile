@@ -6,7 +6,7 @@
 #    By: yberries <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/03 05:28:15 by yberries          #+#    #+#              #
-#    Updated: 2020/11/13 05:48:32 by yberries         ###   ########.fr        #
+#    Updated: 2020/11/13 17:58:56 by yberries         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,10 +21,10 @@ SRC_DIR = src/
 SRC = $(addprefix $(SRC_DIR), $(SRCS))
 SRCS1 = push_swap.c \
 		ps_tools.c \
-		ps_tools2.c \
 		lst_tools.c \
 		reading.c \
 		sorting.c \
+		s_tools.c \
 		indexation.c \
 		set1.c \
 		set2.c \

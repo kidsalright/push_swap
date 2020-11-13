@@ -6,7 +6,7 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/30 17:37:25 by yberries          #+#    #+#             */
-/*   Updated: 2020/11/11 02:03:43 by yberries         ###   ########.fr       */
+/*   Updated: 2020/11/13 06:42:03 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ void	set_index(t_psl *list, int len)
 	t_psl	*tmp;
 
 	tmp = list;
-	tab = (int *)malloc(sizeof(int) * len);
+	if (!(tab = (int *)malloc(sizeof(int) * len)))
+		ft_exit();
 	i = -1;
 	while (++i < len)
 	{
