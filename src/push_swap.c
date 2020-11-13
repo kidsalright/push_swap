@@ -6,11 +6,39 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 20:05:17 by yberries          #+#    #+#             */
-/*   Updated: 2020/11/10 22:52:53 by yberries         ###   ########.fr       */
+/*   Updated: 2020/11/13 21:29:34 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	sort_three(t_state *state)
+{
+	t_psl	*l;
+
+	l = state->a.start;
+	if (l->num > l->next->num && l->next->num < l->next->next->num && \
+			l->next->next->num > l->num)
+		put_res(state, SA);
+	if (l->num > l->next->num && l->next->num > l->next->next->num && \
+			l->next->next->num < l->num)
+	{
+		put_res(state, SA);
+		put_res(state, RRA);
+	}
+	if (l->num > l->next->num && l->next->num < l->next->next->num && \
+			l->next->next->num < l->num)
+		put_res(state, RA);
+	if (l->num < l->next->num && l->next->num > l->next->next->num && \
+			l->next->next->num > l->num)
+	{
+		put_res(state, SA);
+		put_res(state, RA);
+	}
+	if (l->num < l->next->num && l->next->num > l->next->next->num && \
+			l->next->next->num < l->num)
+		put_res(state, RRA);
+}
 
 int		main(int ac, char **av)
 {

@@ -6,7 +6,7 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 20:01:37 by yberries          #+#    #+#             */
-/*   Updated: 2020/11/13 20:55:12 by yberries         ###   ########.fr       */
+/*   Updated: 2020/11/13 21:30:49 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,5 +110,6 @@ int					find_from_bot(t_psl *l, int ind);
 
 void				start_alg(t_state *s);
 void				set_index(t_psl *list, int len);
+void				sort_three(t_state *state);
 
 #endif

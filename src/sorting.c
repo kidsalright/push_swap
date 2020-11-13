@@ -6,39 +6,11 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 02:56:09 by yberries          #+#    #+#             */
-/*   Updated: 2020/11/13 17:57:00 by yberries         ###   ########.fr       */
+/*   Updated: 2020/11/13 21:30:02 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	sort_three(t_state *state)
-{
-	t_psl *l;
-
-	l = state->a.start;
-	if (l->num > l->next->num && l->next->num < l->next->next->num && \
-			l->next->next->num > l->num)
-		put_res(state, SA);
-	if (l->num > l->next->num && l->next->num > l->next->next->num && \
-			l->next->next->num < l->num)
-	{
-		put_res(state, SA);
-		put_res(state, RRA);
-	}
-	if (l->num > l->next->num && l->next->num < l->next->next->num && \
-			l->next->next->num < l->num)
-		put_res(state, RA);
-	if (l->num < l->next->num && l->next->num > l->next->next->num && \
-			l->next->next->num > l->num)
-	{
-		put_res(state, SA);
-		put_res(state, RA);
-	}
-	if (l->num < l->next->num && l->next->num > l->next->next->num && \
-			l->next->next->num < l->num)
-		put_res(state, RRA);
-}
 
 void	put_chunk_tob(t_state *state, int ind, int counts)
 {
@@ -100,6 +72,30 @@ void	try_chunks(t_state *state, int ver)
 	back_to_a(state);
 }
 
+void	sort_five(t_state *state)
+{
+	int	min;
+	int	side;
+	int	i;
+
+	i = (state->a.len == 5) ? 3 : 2;
+	while (--i)
+	{
+		min = find_min(&state->a);
+		side = (choose_side(&state->a, min));
+		if (side)
+			while (state->a.start->num != min)
+				ra(state);
+		else
+			while (state->a.start->num != min)
+				rra(state);
+		pb(state);
+	}
+	sort_three(state);
+	pa(state);
+	pa(state);
+}
+
 void	start_alg(t_state *state)
 {
 	state->res = NULL;
@@ -112,6 +108,8 @@ void	start_alg(t_state *state)
 			put_res(state, SA);
 		else if (state->a.len == 3)
 			sort_three(state);
+		else if (state->a.len < 6)
+			sort_five(state);
 		else if (state->a.len < 150)
 			try_chunks(state, 5);
 		else if (state->a.len < 450)
