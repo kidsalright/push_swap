@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   trash.c                                            :+:      :+:    :+:   */
+/*   ps_tools2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/30 15:45:30 by yberries          #+#    #+#             */
-/*   Updated: 2020/11/12 08:40:23 by yberries         ###   ########.fr       */
+/*   Updated: 2020/11/13 00:50:54 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	out_info(t_psl *tmp)
 	ft_printf("numbers          order    index\n");
 	while (tmp)
 	{
-		ft_printf("%-11d %4d   %2d\n", tmp->num, tmp->index);
+		ft_printf("%-11d %4d  \n", tmp->num, tmp->index);
 		tmp = tmp->next;
 	}
 	write(1, "\n", 1);

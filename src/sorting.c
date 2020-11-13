@@ -6,7 +6,7 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 02:56:09 by yberries          #+#    #+#             */
-/*   Updated: 2020/11/12 09:19:43 by yberries         ###   ########.fr       */
+/*   Updated: 2020/11/13 05:40:35 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ void	heh_sort(t_state *state)
 	med = state->a.len / 2;
 	i = med;
 	while (i)
+	{
 		if (state->a.start->index < med)
 		{
 			pb(state);
@@ -99,8 +100,98 @@ void	heh_sort(t_state *state)
 		}
 		else
 			ra(state);
+	}
 	push_first(state);
 	push_last(state);
+}
+
+int		find_from_bot(t_psl *l, int ind)
+{
+	int	i;
+
+	i = 1;
+	while (l)
+	{
+		if (l->index < ind)
+			return (i);
+		++i;
+		l = l->prev;
+	}
+}
+
+int		find_from_top(t_psl *l, int ind)
+{
+	int	i;
+
+	i = 1;
+	while (l)
+	{
+		if (l->index < ind)
+			return (i);
+		++i;
+		l = l->next;
+	}
+}
+
+void	put_chunk_tob(t_state *state, int ind, int counts)
+{
+	t_psl	*tmp;
+	int		takebot;
+	int		taketop;
+
+	while (counts && state->a.start)
+	{
+		takebot = find_from_bot(state->a.end, ind);
+		taketop = find_from_top(state->a.start, ind);
+		if (taketop <= takebot)
+			while ((state->a.start->index + 1) > ind)
+				ra(state);
+		else
+			while ((state->a.start->index + 1) > ind)
+				rra(state);
+		pb(state);
+		--counts;
+	}
+}
+
+void	back_to_a(t_state *state)
+{
+	int	max;
+	int	side;
+
+	max = find_max(&state->b);
+	while (state->b.start)
+	{
+		max = find_max(&state->b);
+		side = (choose_side(&state->b, max));
+		if (side)
+			while (state->b.start->num != max)
+				rb(state);
+		else
+			while (state->b.start->num != max)
+				rrb(state);
+		pa(state);
+	}
+}
+
+void	try_chunks(t_state *state, int ver)
+{
+	int	chunk;
+	int	part;
+	int	rem;
+
+	part = 1;
+	set_index(state->a.start, state->a.len);
+	chunk = state->a.len / ver + 1;
+	rem = chunk;
+	while (part <= ver)
+	{
+		chunk = rem;
+		chunk *= part;
+		put_chunk_tob(state, chunk, rem);
+		++part;
+	}
+	back_to_a(state);
 }
 
 void	start_alg(t_state *state)
@@ -115,8 +206,10 @@ void	start_alg(t_state *state)
 			put_res(state, SA);
 		else if (state->a.len == 3)
 			sort_three(state);
+		else if (state->a.len < 150)
+			try_chunks(state, 5);
 		else
-			heh_sort(state);
+			try_chunks(state, 10);
 	}
 	new_out(state);
 }
