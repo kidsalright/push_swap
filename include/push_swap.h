@@ -6,7 +6,7 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 20:01:37 by yberries          #+#    #+#             */
-/*   Updated: 2020/11/13 17:56:35 by yberries         ###   ########.fr       */
+/*   Updated: 2020/11/13 20:55:12 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ int					ps_atoi(char **str, char sign);
 void				check_dups(t_psl *head);
 void				free_ps(t_state *s);
 void				args_to_stack(t_stack *s, int ac, char **av);
+void				protect_arg(t_state *state, char *av);
 int					choose_side(t_stack *a, int n);
 int					find_min(t_stack *a);
 int					find_max(t_stack *a);

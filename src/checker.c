@@ -6,7 +6,7 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/22 22:34:10 by yberries          #+#    #+#             */
-/*   Updated: 2020/11/13 20:26:07 by yberries         ###   ########.fr       */
+/*   Updated: 2020/11/13 20:54:29 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,7 @@ int		main(int ac, char **av)
 
 	if (ac > 1)
 	{
-		state.vis = (av[1][0] == '-' && av[1][1] == 'v') ? 2 : 1;
+		protect_arg(&state, av[1]);
 		if (ac > state.vis)
 		{
 			state.t = 0;

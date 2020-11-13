@@ -6,11 +6,18 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 07:03:06 by yberries          #+#    #+#             */
-/*   Updated: 2020/11/11 02:43:59 by yberries         ###   ########.fr       */
+/*   Updated: 2020/11/13 20:54:22 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	protect_arg(t_state *state, char *av)
+{
+	state->vis = (av[0] == '-' && av[1] == 'v') ? 2 : 1;
+	if (state->vis == 2 && ft_strlen(av) > 2)
+		ft_exit();
+}
 
 void	find_nums(t_stack *a, char *av)
 {
