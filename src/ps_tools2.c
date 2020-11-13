@@ -6,21 +6,40 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/30 15:45:30 by yberries          #+#    #+#             */
-/*   Updated: 2020/11/13 00:50:54 by yberries         ###   ########.fr       */
+/*   Updated: 2020/11/13 05:47:40 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <push_swap.h>
 
-void	out_info(t_psl *tmp)
+int		find_from_bot(t_psl *l, int ind)
 {
-	ft_printf("numbers          order    index\n");
-	while (tmp)
+	int	i;
+
+	i = 1;
+	while (l)
 	{
-		ft_printf("%-11d %4d  \n", tmp->num, tmp->index);
-		tmp = tmp->next;
+		if (l->index < ind)
+			return (i);
+		++i;
+		l = l->prev;
 	}
-	write(1, "\n", 1);
+	return (0);
+}
+
+int		find_from_top(t_psl *l, int ind)
+{
+	int	i;
+
+	i = 1;
+	while (l)
+	{
+		if (l->index < ind)
+			return (i);
+		++i;
+		l = l->next;
+	}
+	return (0);
 }
 
 int		find_max(t_stack *a)
@@ -72,24 +91,4 @@ int		choose_side(t_stack *a, int n)
 		tmp = tmp->next;
 	}
 	return (0);
-}
-
-void	fucking_sort(t_state *state)
-{
-	int	min;
-	int	side;
-
-	min = find_min(&state->a);
-	side = choose_side(&state->a, min);
-	if (side == 1)
-		while (state->a.start->num != min)
-			ra(state);
-	else
-		while (state->a.start->num != min)
-			rra(state);
-	pb(state);
-	if (state->a.len != 0)
-		fucking_sort(state);
-	while (state->b.len != 0)
-		pa(state);
 }

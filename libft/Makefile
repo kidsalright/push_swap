@@ -6,7 +6,7 @@
 #    By: yberries <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/09 17:04:49 by yberries          #+#    #+#              #
-#    Updated: 2020/10/21 17:14:35 by yberries         ###   ########.fr        #
+#    Updated: 2020/11/13 05:49:06 by yberries         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -102,7 +102,6 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	@printf "\r$(S_CLN)$(C_GRN)Libft compiled\n"
 	@make -sC $(PFT)
-#	@printf "\r$(S_CLN)$(C_GRN)Ft_printf compiled\n"
 	@ar rc $(NAME) $(OBJ) $(PFT_OBJ)
 	@ranlib $(NAME)
 	@printf "\r$(R_CLEAN)$(C_GRN)Libft built\n"

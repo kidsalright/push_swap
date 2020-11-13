@@ -6,7 +6,7 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/07 02:56:09 by yberries          #+#    #+#             */
-/*   Updated: 2020/11/13 05:40:35 by yberries         ###   ########.fr       */
+/*   Updated: 2020/11/13 05:48:11 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,102 +40,8 @@ void	sort_three(t_state *state)
 		put_res(state, RRA);
 }
 
-void	push_first(t_state *state)
-{
-	int	min;
-	int	side;
-	int	i;
-
-	i = 0;
-	while (state->a.start->next)
-	{
-		min = find_min(&state->a);
-		side = choose_side(&state->a, min);
-		if (side == 1)
-			while (state->a.start->num != min)
-				ra(state);
-		else
-			while (state->a.start->num != min)
-				rra(state);
-		pb(state);
-		++i;
-	}
-	while (i--)
-		pa(state);
-}
-
-void	push_last(t_state *state)
-{
-	int	max;
-	int	side;
-
-	while (state->b.start)
-	{
-		max = find_max(&state->b);
-		side = choose_side(&state->b, max);
-		if (side == 1)
-			while (state->b.start->num != max)
-				rb(state);
-		else
-			while (state->b.start->num != max)
-				rrb(state);
-		pa(state);
-	}
-}
-
-void	heh_sort(t_state *state)
-{
-	int	med;
-	int	i;
-
-	set_index(state->a.start, state->a.len);
-	med = state->a.len / 2;
-	i = med;
-	while (i)
-	{
-		if (state->a.start->index < med)
-		{
-			pb(state);
-			--i;
-		}
-		else
-			ra(state);
-	}
-	push_first(state);
-	push_last(state);
-}
-
-int		find_from_bot(t_psl *l, int ind)
-{
-	int	i;
-
-	i = 1;
-	while (l)
-	{
-		if (l->index < ind)
-			return (i);
-		++i;
-		l = l->prev;
-	}
-}
-
-int		find_from_top(t_psl *l, int ind)
-{
-	int	i;
-
-	i = 1;
-	while (l)
-	{
-		if (l->index < ind)
-			return (i);
-		++i;
-		l = l->next;
-	}
-}
-
 void	put_chunk_tob(t_state *state, int ind, int counts)
 {
-	t_psl	*tmp;
 	int		takebot;
 	int		taketop;
 

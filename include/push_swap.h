@@ -6,7 +6,7 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/15 20:01:37 by yberries          #+#    #+#             */
-/*   Updated: 2020/11/12 09:29:34 by yberries         ###   ########.fr       */
+/*   Updated: 2020/11/13 05:47:02 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,8 @@ void				args_to_stack(t_stack *s, int ac, char **av);
 int					choose_side(t_stack *a, int n);
 int					find_min(t_stack *a);
 int					find_max(t_stack *a);
+int					find_from_top(t_psl *l, int ind);
+int					find_from_bot(t_psl *l, int ind);
 
 void				start_alg(t_state *s);
 void				set_index(t_psl *list, int len);

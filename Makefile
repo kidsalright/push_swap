@@ -6,7 +6,7 @@
 #    By: yberries <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/03 05:28:15 by yberries          #+#    #+#              #
-#    Updated: 2020/11/12 09:24:42 by yberries         ###   ########.fr        #
+#    Updated: 2020/11/13 05:48:32 by yberries         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,7 @@ HDR = $(addprefix $(HDR_DIR), $(HDRS))
 
 INCLUDES = -I $(HDR_DIR) -I $(LIBFT_DIR)
 
-FLAGS = -Wall -Wextra #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+FLAGS = -Wall -Wextra -Werror
 
 S_CLN = \033[K
 C_RED = \033[31m
