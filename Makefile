@@ -6,7 +6,7 @@
 #    By: yberries <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/03 05:28:15 by yberries          #+#    #+#              #
-#    Updated: 2020/11/13 17:58:56 by yberries         ###   ########.fr        #
+#    Updated: 2020/11/13 19:49:42 by yberries         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,21 +62,19 @@ C_CYAN = \033[36m
 
 all: $(NAME1) $(NAME2)
 
-$(NAME1): $(LIBFT) $(OBJ_DIR) $(OBJ1)
+$(NAME1): $(LIBFT) $(OBJ1)
 	@gcc $(FLAGS) -o $(NAME1) $(INCLUDES) $(OBJ1) $(LIBFT_LNK)
 	@printf "\r$(S_CLN)$(C_GRN)$(NAME1) compiled\n"
 
-$(NAME2): $(LIBFT) $(OBJ_DIR) $(OBJ2)
+$(NAME2): $(LIBFT) $(OBJ2)
 	@gcc $(FLAGS) -o $(NAME2) $(INCLUDES) $(OBJ2) $(LIBFT_LNK)
 	@printf "\r$(S_CLN)$(C_GRN)$(NAME2) compiled\n"
-
-$(OBJ_DIR):
-	@mkdir -p $(OBJ_DIR)
 
 $(LIBFT):
 	@make -sC $(LIBFT_DIR)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(HDR)
+	@mkdir -p $(OBJ_DIR)
 	@printf "\r$(S_CLN)$(C_CYAN)Compiling$(S_CLN)"
 	@gcc $(FLAGS) -c $(INCLUDES) $< -o $@
 
