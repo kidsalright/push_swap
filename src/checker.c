@@ -6,7 +6,7 @@
 /*   By: yberries <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/22 22:34:10 by yberries          #+#    #+#             */
-/*   Updated: 2020/11/13 06:39:43 by yberries         ###   ########.fr       */
+/*   Updated: 2020/11/13 20:26:07 by yberries         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ void	start_checking(t_state *state, t_inst *inst)
 	state->b.start = NULL;
 	state->b.end = NULL;
 	state->b.len = 0;
+	state->counter = 0;
 	tmp = inst;
 	while (tmp->next)
 	{
@@ -129,22 +130,24 @@ int		main(int ac, char **av)
 
 	if (ac > 1)
 	{
-		state.t = 0;
 		state.vis = (av[1][0] == '-' && av[1][1] == 'v') ? 2 : 1;
-		args_to_stack(&state.a, (ac - (int)state.vis), \
-				&av[(int)state.vis]);
-		check_dups(state.a.start);
-		inst = get_instructs();
-		state.counter = 0;
-		start_checking(&state, inst);
-		if (is_sorted(state.a.start) && state.b.len == 0)
-			(state.vis == 2) ? out_res(&state, \
-					"\033[32mOK") : ft_printf("OK\n");
-		else
-			(state.vis == 2) ? out_res(&state, \
-					"\033[31mKO") : ft_printf("KO\n");
-		free_inst(inst);
-		free_ps(&state);
+		if (ac > state.vis)
+		{
+			state.t = 0;
+			args_to_stack(&state.a, (ac - (int)state.vis), \
+					&av[(int)state.vis]);
+			check_dups(state.a.start);
+			inst = get_instructs();
+			start_checking(&state, inst);
+			if (is_sorted(state.a.start) && state.b.len == 0)
+				(state.vis == 2) ? out_res(&state, \
+						"\033[32mOK") : ft_printf("OK\n");
+			else
+				(state.vis == 2) ? out_res(&state, \
+						"\033[31mKO") : ft_printf("KO\n");
+			free_inst(inst);
+			free_ps(&state);
+		}
 	}
 	return (0);
 }
